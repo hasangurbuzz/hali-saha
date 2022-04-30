@@ -1,25 +1,40 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
 
 const Header = () => {
+    const admin = {username: "admin", password: 1234}
 
     const [loginFormStatus, setLoginFormStatus] = useState(false)
+    const [signUpFormStatus, setSignUpFormStatus] = useState(false)
+    const [user, setUser] = useState("")
+
     const toggleLoginForm = () => {
         setLoginFormStatus(!loginFormStatus)
     }
+
+    const toggleSignUpForm = () => {
+        setSignUpFormStatus(!signUpFormStatus)
+    }
+
+    const checkUserCred = ({username, password}) => {
+
+    }
+
 
     return (
         <Container>
             <LogoImage src={'logo_new_transparent.png'}/>
             <div>
-                <SignUpButton>Kayıt Ol</SignUpButton>
-                <LoginButton onClick={toggleLoginForm}>Giriş Yap</LoginButton>
+                <SignUpFormButton onClick={toggleSignUpForm}>Kayıt Ol</SignUpFormButton>
+                <LoginFormButton onClick={toggleLoginForm}>Giriş Yap</LoginFormButton>
             </div>
-            <LoginForm status={loginFormStatus} toggler={toggleLoginForm} />
-            {/*<LogBar show={loginFormStatus}>*/}
-            {/*    <button onClick={toggleLoginForm}>close</button>*/}
-            {/*</LogBar>*/}
+            <LoginForm status={loginFormStatus} toggler={toggleLoginForm}/>
+            <SignUpForm status={signUpFormStatus} toggler={toggleSignUpForm}/>
+
+            {user && <div>Hoşgeldin {user}</div>}
+
         </Container>);
 };
 
@@ -29,6 +44,10 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding: 0 20px;
 
 `
 
@@ -37,31 +56,11 @@ const LogoImage = styled.img`
   min-width: 150px;
 `
 
-const LoginButton = styled.button`
-
-
-`
-
-const SignUpButton = styled(LoginButton)`
-`
-
-
-const LogBar = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  background-color: red;
-  width: 300px;
-  z-index: 16;
-  list-style: none;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  text-align: start;
-
-  transition: transform 0.2s;
-
-  transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
+const LoginFormButton = styled.button`
+  margin: 2px;
 
 `
+
+const SignUpFormButton = styled(LoginFormButton)`
+`
+
