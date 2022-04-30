@@ -4,11 +4,11 @@ import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
 const Header = () => {
-    const admin = {username: "admin", password: 1234}
+    const admin = {username: "admin", password: '1234'}
 
     const [loginFormStatus, setLoginFormStatus] = useState(false)
     const [signUpFormStatus, setSignUpFormStatus] = useState(false)
-    const [user, setUser] = useState("")
+    const [user, setUser] = useState({username: '', password: ''})
 
     const toggleLoginForm = () => {
         setLoginFormStatus(!loginFormStatus)
@@ -18,22 +18,35 @@ const Header = () => {
         setSignUpFormStatus(!signUpFormStatus)
     }
 
-    const checkUserCred = ({username, password}) => {
-
+    const checkCredentials = (user) => {
+        if (user.username === admin.username && user.password === admin.password) {
+            setUser(user)
+            return true
+        }
+        else {
+            return false
+        }
     }
 
 
     return (
         <Container>
             <LogoImage src={'logo_new_transparent.png'}/>
-            <div>
-                <SignUpFormButton onClick={toggleSignUpForm}>Kayıt Ol</SignUpFormButton>
-                <LoginFormButton onClick={toggleLoginForm}>Giriş Yap</LoginFormButton>
-            </div>
-            <LoginForm status={loginFormStatus} toggler={toggleLoginForm}/>
+
+            {!user.username &&
+                <ButtonWrapper>
+                    <SignUpFormButton onClick={toggleSignUpForm}>Kayıt Ol</SignUpFormButton>
+                    <LoginFormButton onClick={toggleLoginForm}>Giriş Yap</LoginFormButton>
+                </ButtonWrapper>
+            }
+
+            <LoginForm status={loginFormStatus} toggler={toggleLoginForm} checkUser={checkCredentials}/>
             <SignUpForm status={signUpFormStatus} toggler={toggleSignUpForm}/>
 
-            {user && <div>Hoşgeldin {user}</div>}
+            {user.username && <div>
+                <button onClick={() => setUser({username: '', password: ''})}>{user.username}</button>
+            </div>}
+
 
         </Container>);
 };
@@ -58,9 +71,11 @@ const LogoImage = styled.img`
 
 const LoginFormButton = styled.button`
   margin: 2px;
-
 `
 
 const SignUpFormButton = styled(LoginFormButton)`
+`
+
+const ButtonWrapper = styled.div`
 `
 

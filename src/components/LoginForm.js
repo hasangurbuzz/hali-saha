@@ -1,11 +1,19 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
+import {compareArraysAsSet} from "@testing-library/jest-dom/dist/utils";
 
 const LoginForm = (props) => {
-    const {status, toggler} = props
-    const [user, setUser] = useState({name: '', password: ''})
+    const {status, toggler, checkUser} = props
+    const [user, setUser] = useState({username: '', password: ''})
     const [passwordStatus, setPasswordStatus] = useState(false)
 
+    const resetInputValue = (e) => {
+        e.value = ""
+        resetUserValue()
+    }
+    const resetUserValue = () => {
+        setUser({username: '', password: ''})
+    }
 
     return (
         <Container show={status}>
@@ -14,13 +22,19 @@ const LoginForm = (props) => {
             </CloseButtonWrapper>
 
             <InputLabel>Kullanıcı Adı</InputLabel>
-            <UsernameInput onChange={(e) => setUser({...user, name: e.target.value})}/>
+            <UsernameInput id={'username'} onChange={(e) => setUser({...user, username: e.target.value})}/>
 
             <InputLabel>Şifre</InputLabel>
-            <PasswordInput onChange={(e) => setUser({...user, password: e.target.value})}
+            <PasswordInput id={'password'} onChange={(e) => setUser({...user, password: e.target.value})}
                            type={passwordStatus ? 'text' : 'password'}/>
 
-            <SubmitButton onClick={() => console.log(user)}>Giriş Yap</SubmitButton>
+            <SubmitButton onClick={() => {
+                const isUserFound = checkUser(user)
+                isUserFound && toggler()
+
+                resetInputValue(document.getElementById('username'))
+                resetInputValue(document.getElementById('password'))
+            }}>Giriş Yap</SubmitButton>
             <input onChange={(e) => setPasswordStatus(!passwordStatus)}
                    type={'checkbox'}/>
 
