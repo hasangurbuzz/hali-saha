@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import {compareArraysAsSet} from "@testing-library/jest-dom/dist/utils";
 
 const LoginForm = (props) => {
     const {status, toggler, checkUser} = props
@@ -22,11 +21,15 @@ const LoginForm = (props) => {
             </CloseButtonWrapper>
 
             <InputLabel>Kullanıcı Adı</InputLabel>
-            <UsernameInput id={'username'} onChange={(e) => setUser({...user, username: e.target.value})}/>
+            <UsernameInput error={true} id={'username'} onChange={(e) => setUser({...user, username: e.target.value})}/>
 
             <InputLabel>Şifre</InputLabel>
-            <PasswordInput id={'password'} onChange={(e) => setUser({...user, password: e.target.value})}
-                           type={passwordStatus ? 'text' : 'password'}/>
+            <PasswordWrapper>
+                <PasswordInput id={'password'} onChange={(e) => setUser({...user, password: e.target.value})}
+                               type={passwordStatus ? 'text' : 'password'}/>
+                <ShowHidePasswordButton onChange={() => setPasswordStatus(!passwordStatus)}
+                                        type={'checkbox'}/>
+            </PasswordWrapper>
 
             <SubmitButton onClick={() => {
                 const isUserFound = checkUser(user)
@@ -35,8 +38,6 @@ const LoginForm = (props) => {
                 resetInputValue(document.getElementById('username'))
                 resetInputValue(document.getElementById('password'))
             }}>Giriş Yap</SubmitButton>
-            <input onChange={(e) => setPasswordStatus(!passwordStatus)}
-                   type={'checkbox'}/>
 
 
         </Container>
@@ -45,6 +46,8 @@ const LoginForm = (props) => {
 
 export default LoginForm;
 
+
+//Styling part
 
 const Container = styled.div`
   position: fixed;
@@ -61,7 +64,10 @@ const Container = styled.div`
   align-items: center;
   background: wheat;
 
-  transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
+  transform: ${props => {
+    const {show} = props;
+    return show ? 'translateX(0)' : 'translateX(100%)';
+  }};
   transition: transform 0.2s;
 `
 
@@ -74,17 +80,40 @@ const CloseButtonWrapper = styled.div`
 
 const InputLabel = styled.label`
 
+
 `
 
 const UsernameInput = styled.input`
   margin: 5px;
-  width: 50vh;
+  width: 40vw;
   align-items: center;
+  border: solid ${props => {
+    const {error} = props;
+    return error ? 'red' : 'white';
+  }};
+  border-radius: 10px;
+  padding: 3px;
 `
 
 const PasswordInput = styled(UsernameInput)`
-  ${props => props.show ? "type" : 'text'};
+  ${props => {
+    const {show} = props;
+    return show ? "type" : 'text';
+  }};
 `
 
 const SubmitButton = styled.button`
+`
+const PasswordWrapper = styled.div`
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+`
+
+const ShowHidePasswordButton = styled.input`
+  position: fixed;
+  background: transparent;
+  right: 30px;
+
 `

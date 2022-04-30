@@ -1,6 +1,6 @@
 import './App.css';
-import styled from "styled-components";
-import React, {useState} from 'react';
+
+import React from 'react';
 import Header from "./components/Header";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
 
 export default App;
 
-const Button = styled.button`
+
+//Styling part
 
 
-`

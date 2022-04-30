@@ -6,6 +6,12 @@ import SignUpForm from "./SignUpForm";
 const Header = () => {
     const admin = {username: "admin", password: '1234'}
 
+    const userList = [
+        {username: 'admin', password: '1234'},
+        {username: 'user', password: '1234'}
+
+    ]
+
     const [loginFormStatus, setLoginFormStatus] = useState(false)
     const [signUpFormStatus, setSignUpFormStatus] = useState(false)
     const [user, setUser] = useState({username: '', password: ''})
@@ -18,12 +24,24 @@ const Header = () => {
         setSignUpFormStatus(!signUpFormStatus)
     }
 
+
+    const checkUserExists = (user) => {
+        return userList.some(e => e.username === user.username)
+    }
+
+
     const checkCredentials = (user) => {
-        if (user.username === admin.username && user.password === admin.password) {
+        if (!checkUserExists(user)) {
+            alert('Kullanıcı bulunamadı')
+            return false
+
+        } else if (user.username === admin.username && user.password === admin.password) {
             setUser(user)
             return true
-        }
-        else {
+        } else {
+            alert('Kullanıcı adı veya şifre yanlış')
+
+
             return false
         }
     }
@@ -52,6 +70,9 @@ const Header = () => {
 };
 
 export default Header;
+
+//Styling part
+
 
 const Container = styled.div`
   display: flex;

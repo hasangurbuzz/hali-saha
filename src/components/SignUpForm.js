@@ -25,6 +25,8 @@ const SignUpForm = (props) => {
 
 export default SignUpForm;
 
+//Styling part
+
 
 const Container = styled.div`
   position: fixed;
@@ -41,7 +43,10 @@ const Container = styled.div`
   align-items: center;
   background: wheat;
 
-  transform: ${props => props.show ? 'translateX(0)' : 'translateX(100%)'};
+  transform: ${props => {
+    const {show} = props;
+    return show ? 'translateX(0)' : 'translateX(100%)';
+  }};
   transition: transform 0.2s;
 `
 
