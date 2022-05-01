@@ -5,16 +5,22 @@ const SignUpForm = (props) => {
     const {status, toggler, addNewUser} = props
     const [user, setUser] = useState({username: '', password: '', password_again: ''})
 
+    //check inputs are matching
     const isPasswordsMatching = (user) => {
         return user.password === user.password_again
     }
 
+    //send user data to parent component
     const submitUser = (user) => {
         if (isPasswordsMatching(user)) {
-            addNewUser({
-                username: user.username,
-                password: user.password
-            }) ? alert('kullanıcı adı alınmış') : alert('Kayıt tamamlandı')
+            // addNewUser({username: user.username, password: user.password}) ? alert('kullanıcı adı alınmış') : alert('Kayıt tamamlandı')
+            if(addNewUser({username: user.username, password: user.password})){
+                alert('Kullanıcı adı alınmış')
+            }
+            else {
+                toggler()
+                alert('kayıt tamamlandı')
+            }
         } else {
             alert('Şifreler uyuşmuyor')
         }
