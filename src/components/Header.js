@@ -4,17 +4,20 @@ import LoginForm from "./LoginForm";
 import SignUpForm from "./SignUpForm";
 
 const Header = () => {
-    const admin = {username: "admin", password: '1234'}
 
-    const userList = [
+    const dummyUserList = [
         {username: 'admin', password: '1234'},
-        {username: 'user', password: '1234'}
+        {username: 'user', password: '12345'}
 
     ]
 
+    const [userList, setUserList] = useState(dummyUserList)
+
+    console.log(userList)
     const [loginFormStatus, setLoginFormStatus] = useState(false)
     const [signUpFormStatus, setSignUpFormStatus] = useState(false)
     const [user, setUser] = useState({username: '', password: ''})
+    const [error, setError] = useState(false)
 
     const toggleLoginForm = () => {
         setLoginFormStatus(!loginFormStatus)
@@ -29,24 +32,34 @@ const Header = () => {
         return userList.some(e => e.username === user.username)
     }
 
-
-    const checkCredentials = (user) => {
+    const loginUser = (user) => {
+        //not much necessary
         if (!checkUserExists(user)) {
             alert('Kullanıcı bulunamadı')
+            setError(true)
             return false
-
-        } else if (user.username === admin.username && user.password === admin.password) {
+            // user.username === admin.username && user.password === admin.password
+        } else if (userList.some((e) => e.username === user.username && e.password === user.password)) {
             setUser(user)
+            setError(false)
             return true
         } else {
-            alert('Kullanıcı adı veya şifre yanlış')
-
-
+            alert('Yanlış şifre')
+            setError(true)
             return false
         }
     }
 
-
+    const addNewUser = (user) => {
+        if (checkUserExists(user)) {
+            return true
+        } else {
+            setUserList((list) => {
+                return [...list, user]
+            })
+            return false
+        }
+    }
     return (
         <Container>
             <LogoImage src={'logo_new_transparent.png'}/>
@@ -58,8 +71,8 @@ const Header = () => {
                 </ButtonWrapper>
             }
 
-            <LoginForm status={loginFormStatus} toggler={toggleLoginForm} checkUser={checkCredentials}/>
-            <SignUpForm status={signUpFormStatus} toggler={toggleSignUpForm}/>
+            <LoginForm error={error} status={loginFormStatus} toggler={toggleLoginForm} loginUser={loginUser}/>
+            <SignUpForm status={signUpFormStatus} toggler={toggleSignUpForm} addNewUser={addNewUser}/>
 
             {user.username && <div>
                 <button onClick={() => setUser({username: '', password: ''})}>{user.username}</button>

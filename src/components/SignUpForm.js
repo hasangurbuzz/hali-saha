@@ -1,8 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 
 const SignUpForm = (props) => {
-    const {status, toggler} = props
+    const {status, toggler, addNewUser} = props
+    const [user, setUser] = useState({username: '', password: '', password_again: ''})
+
+    const isPasswordsMatching = (user) => {
+        return user.password === user.password_again
+    }
+
+    const submitUser = (user) => {
+        if (isPasswordsMatching(user)){
+            addNewUser({username:user.username,password:user.password}) ? alert('kullanıcı adı alınmış') : alert('kayıt tamam')
+        }
+        else {console.log('not matching')}
+    }
+
     return (
         <Container show={status}>
             <CloseButtonWrapper>
@@ -10,14 +23,16 @@ const SignUpForm = (props) => {
             </CloseButtonWrapper>
 
             <InputLabel>Kullanıcı Adı</InputLabel>
-            <UsernameInput/>
+            <UsernameInput onChange={(e) => setUser({...user, username: e.target.value})}/>
 
             <InputLabel>Şifre</InputLabel>
-            <PasswordInput type={'password'}/>
+            <PasswordInput onChange={(e) => setUser({...user, password: e.target.value})} type={'password'}/>
 
             <InputLabel>Tekrar Şifre</InputLabel>
-            <PasswordInput type={'password'}/>
-            <SubmitButton>Kayıt Ol</SubmitButton>
+            <PasswordInput onChange={(e) => setUser({...user, password_again: e.target.value})} type={'password'}/>
+            <SubmitButton onClick={() => {
+                submitUser(user)
+            }}>Kayıt Ol</SubmitButton>
 
         </Container>
     );

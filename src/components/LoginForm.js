@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 
 const LoginForm = (props) => {
-    const {status, toggler, checkUser} = props
+    const {status, toggler, loginUser, error} = props
     const [user, setUser] = useState({username: '', password: ''})
     const [passwordStatus, setPasswordStatus] = useState(false)
+
 
     const resetInputValue = (e) => {
         e.value = ""
@@ -13,6 +14,11 @@ const LoginForm = (props) => {
     const resetUserValue = () => {
         setUser({username: '', password: ''})
     }
+    const submitValues = () => {
+        loginUser(user) && toggler()
+        resetInputValue(document.getElementById('username'))
+        resetInputValue(document.getElementById('password'))
+    }
 
     return (
         <Container show={status}>
@@ -20,24 +26,27 @@ const LoginForm = (props) => {
                 <button onClick={toggler}>close</button>
             </CloseButtonWrapper>
 
+
+            {/*inputs*/}
             <InputLabel>Kullanıcı Adı</InputLabel>
-            <UsernameInput error={true} id={'username'} onChange={(e) => setUser({...user, username: e.target.value})}/>
+            <UsernameInput error={error} id={'username'}
+                           onChange={(e) => setUser({...user, username: e.target.value})}/>
 
             <InputLabel>Şifre</InputLabel>
             <PasswordWrapper>
-                <PasswordInput id={'password'} onChange={(e) => setUser({...user, password: e.target.value})}
-                               type={passwordStatus ? 'text' : 'password'}/>
+                <PasswordInput error={error} id={'password'}
+                               type={passwordStatus ? 'text' : 'password'}
+                               onChange={(e) => setUser({...user, password: e.target.value})}
+                               onKeyDown={(e) => {
+                                   e.key === "Enter" && submitValues()
+                               }}
+                />
                 <ShowHidePasswordButton onChange={() => setPasswordStatus(!passwordStatus)}
                                         type={'checkbox'}/>
             </PasswordWrapper>
 
-            <SubmitButton onClick={() => {
-                const isUserFound = checkUser(user)
-                isUserFound && toggler()
 
-                resetInputValue(document.getElementById('username'))
-                resetInputValue(document.getElementById('password'))
-            }}>Giriş Yap</SubmitButton>
+            <SubmitButton onClick={submitValues}>Giriş Yap</SubmitButton>
 
 
         </Container>
@@ -85,7 +94,7 @@ const InputLabel = styled.label`
 
 const UsernameInput = styled.input`
   margin: 5px;
-  width: 40vw;
+  width: 40vh;
   align-items: center;
   border: solid ${props => {
     const {error} = props;
@@ -93,12 +102,17 @@ const UsernameInput = styled.input`
   }};
   border-radius: 10px;
   padding: 3px;
+
 `
 
 const PasswordInput = styled(UsernameInput)`
   ${props => {
     const {show} = props;
     return show ? "type" : 'text';
+  }};
+  border: solid ${props => {
+    const {error} = props;
+    return error ? 'red' : 'white';
   }};
 `
 
