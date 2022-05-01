@@ -10,11 +10,28 @@ const SignUpForm = (props) => {
     }
 
     const submitUser = (user) => {
-        if (isPasswordsMatching(user)){
-            addNewUser({username:user.username,password:user.password}) ? alert('kullanıcı adı alınmış') : alert('kayıt tamam')
+        if (isPasswordsMatching(user)) {
+            addNewUser({
+                username: user.username,
+                password: user.password
+            }) ? alert('kullanıcı adı alınmış') : alert('Kayıt tamamlandı')
+        } else {
+            alert('Şifreler uyuşmuyor')
         }
-        else {console.log('not matching')}
+        resetInputValue(document.getElementById('signupUsername'))
+        resetInputValue(document.getElementById('signupPassword'))
+        resetInputValue(document.getElementById('signupPasswordAgain'))
+        resetUserValue()
     }
+
+    const resetInputValue = (e) => {
+        e.value = ""
+        resetUserValue()
+    }
+    const resetUserValue = () => {
+        setUser({username: '', password: '',password_again: ''})
+    }
+
 
     return (
         <Container show={status}>
@@ -23,13 +40,17 @@ const SignUpForm = (props) => {
             </CloseButtonWrapper>
 
             <InputLabel>Kullanıcı Adı</InputLabel>
-            <UsernameInput onChange={(e) => setUser({...user, username: e.target.value})}/>
+            <UsernameInput id={'signupUsername'} onChange={(e) => setUser({...user, username: e.target.value})}/>
 
             <InputLabel>Şifre</InputLabel>
-            <PasswordInput onChange={(e) => setUser({...user, password: e.target.value})} type={'password'}/>
+            <PasswordInput id={'signupPassword'} onChange={(e) => setUser({...user, password: e.target.value})} type={'password'}/>
 
             <InputLabel>Tekrar Şifre</InputLabel>
-            <PasswordInput onChange={(e) => setUser({...user, password_again: e.target.value})} type={'password'}/>
+            <PasswordInput id={'signupPasswordAgain'}
+                onChange={(e) => setUser({...user, password_again: e.target.value})} type={'password'}
+                onKeyDown={(e) => {
+                    e.key === "Enter" && submitUser(user)
+                }}/>
             <SubmitButton onClick={() => {
                 submitUser(user)
             }}>Kayıt Ol</SubmitButton>
@@ -78,8 +99,12 @@ const InputLabel = styled.label`
 
 const UsernameInput = styled.input`
   margin: 5px;
-  width: 50vh;
+  width: 40vh;
   align-items: center;
+  border-radius: 10px;
+  padding: 3px;
+
+
 `
 
 const PasswordInput = styled(UsernameInput)`

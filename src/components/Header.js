@@ -13,11 +13,11 @@ const Header = () => {
 
     const [userList, setUserList] = useState(dummyUserList)
 
-    console.log(userList)
+
     const [loginFormStatus, setLoginFormStatus] = useState(false)
     const [signUpFormStatus, setSignUpFormStatus] = useState(false)
     const [user, setUser] = useState({username: '', password: ''})
-    const [error, setError] = useState(false)
+    // const [error, setError] = useState(false) error visualization
 
     const toggleLoginForm = () => {
         setLoginFormStatus(!loginFormStatus)
@@ -36,22 +36,23 @@ const Header = () => {
         //not much necessary
         if (!checkUserExists(user)) {
             alert('Kullanıcı bulunamadı')
-            setError(true)
+            // setError(true)
             return false
             // user.username === admin.username && user.password === admin.password
         } else if (userList.some((e) => e.username === user.username && e.password === user.password)) {
             setUser(user)
-            setError(false)
+            // setError(false)
             return true
         } else {
             alert('Yanlış şifre')
-            setError(true)
+            // setError(true)
             return false
         }
     }
 
     const addNewUser = (user) => {
         if (checkUserExists(user)) {
+            // setError(true)
             return true
         } else {
             setUserList((list) => {
@@ -71,7 +72,7 @@ const Header = () => {
                 </ButtonWrapper>
             }
 
-            <LoginForm error={error} status={loginFormStatus} toggler={toggleLoginForm} loginUser={loginUser}/>
+            <LoginForm status={loginFormStatus} toggler={toggleLoginForm} loginUser={loginUser}/>
             <SignUpForm status={signUpFormStatus} toggler={toggleSignUpForm} addNewUser={addNewUser}/>
 
             {user.username && <div>

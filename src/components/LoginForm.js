@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 
 const LoginForm = (props) => {
-    const {status, toggler, loginUser, error} = props
+    const {status, toggler, loginUser} = props
     const [user, setUser] = useState({username: '', password: ''})
     const [passwordStatus, setPasswordStatus] = useState(false)
 
@@ -29,12 +29,12 @@ const LoginForm = (props) => {
 
             {/*inputs*/}
             <InputLabel>Kullanıcı Adı</InputLabel>
-            <UsernameInput error={error} id={'username'}
+            <UsernameInput id={'username'}
                            onChange={(e) => setUser({...user, username: e.target.value})}/>
 
             <InputLabel>Şifre</InputLabel>
             <PasswordWrapper>
-                <PasswordInput error={error} id={'password'}
+                <PasswordInput id={'password'}
                                type={passwordStatus ? 'text' : 'password'}
                                onChange={(e) => setUser({...user, password: e.target.value})}
                                onKeyDown={(e) => {
@@ -96,10 +96,6 @@ const UsernameInput = styled.input`
   margin: 5px;
   width: 40vh;
   align-items: center;
-  border: solid ${props => {
-    const {error} = props;
-    return error ? 'red' : 'white';
-  }};
   border-radius: 10px;
   padding: 3px;
 
@@ -109,10 +105,6 @@ const PasswordInput = styled(UsernameInput)`
   ${props => {
     const {show} = props;
     return show ? "type" : 'text';
-  }};
-  border: solid ${props => {
-    const {error} = props;
-    return error ? 'red' : 'white';
   }};
 `
 
