@@ -21,7 +21,7 @@ const Home = (props) => {
         <Container>
             <h1>Halı Sahalar</h1>
 
-            <List data={listOfHalisaha}/>
+            <List data={listOfHalisaha} />
 
 
             <ImageWrapper>
