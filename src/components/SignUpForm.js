@@ -24,6 +24,7 @@ const SignUpForm = (props) => {
         } else {
             alert('Şifreler uyuşmuyor')
         }
+        //not necessary for state management
         resetInputValue(document.getElementById('signupUsername'))
         resetInputValue(document.getElementById('signupPassword'))
         resetInputValue(document.getElementById('signupPasswordAgain'))

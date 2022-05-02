@@ -17,6 +17,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   place-items: center;
+  width: 20vw;
 `
 
 const Image = styled.div`
@@ -28,5 +29,6 @@ const Image = styled.div`
 
 `
 const Description = styled.p`
-  color: red;
+  color: green;
+  text-transform: capitalize;
 `
