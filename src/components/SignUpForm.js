@@ -76,7 +76,7 @@ const Container = styled.div`
   bottom: 0;
   right: 0;
   border: solid;
-  width: 300px;
+  width: 200px;
   z-index: 16;
   list-style: none;
   padding: 20px;
@@ -95,7 +95,7 @@ const Container = styled.div`
 const CloseButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 300px;
+  width: 200px;
 
 `
 
@@ -105,10 +105,12 @@ const InputLabel = styled.label`
 
 const UsernameInput = styled.input`
   margin: 5px;
-  width: 40vh;
+  width: 15vw;
   align-items: center;
   border-radius: 10px;
   padding: 3px;
+  min-width: 120px;
+
 
 
 `

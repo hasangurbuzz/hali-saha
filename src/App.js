@@ -1,16 +1,23 @@
 import './App.css';
 import React, {useState} from 'react';
 import Header from "./components/Header";
+import Home from "./components/Home";
 
 
 function App() {
-    const dummyUserList = [
-        {username: 'admin', password: '1234'},
-        {username: 'user', password: '12345'}
-
+    const imageData = [
+        {image: "team.jpg", description: "Takımını Kur"},
+        {image: "ball.jpg", description: "Top Seçenekleri"},
+        {image: "shoe.jpg", description: "Ayakkabı Seçenekleri"}
     ]
+    const dummyUserList = [
+        {username: 'admin', password: '1234',randevu:'pazar'},
+        {username: 'user', password: '12345',randevu: 'pazartesi'}
+    ]
+
     const [userList, setUserList] = useState(dummyUserList)
     const [user, setUser] = useState({username: '', password: ''})
+
 
     //Adding user from signup
     const addNewUser = (user) => {
@@ -53,6 +60,12 @@ function App() {
     return (
         <div className="App">
             <Header user={user} setUser={setUser} loginUser={loginUser} addNewUser={addNewUser}/>
+            <Home imageData={imageData}/>
+
+
+
+
+
         </div>
     );
 }
@@ -60,6 +73,7 @@ function App() {
 export default App;
 
 
-//Styling part
+
+
 
 
