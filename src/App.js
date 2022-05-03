@@ -11,8 +11,8 @@ function App() {
         {image: "shoe.jpg", description: "Ayakkabı Seçenekleri"}
     ]
     const dummyUserList = [
-        {username: 'admin', password: '1234',randevu:'pazar'},
-        {username: 'user', password: '12345',randevu: 'pazartesi'}
+        {username: 'admin', password: '1234', randevu: 'pazar'},
+        {username: 'user', password: '12345', randevu: 'pazartesi'}
     ]
 
     const [userList, setUserList] = useState(dummyUserList)
@@ -56,14 +56,14 @@ function App() {
 
     }
 
+    const userLogoutHandler = () => {
+        setUser({username: '', password: ''})
+    }
 
     return (
         <div className="App">
-            <Header user={user} setUser={setUser} loginUser={loginUser} addNewUser={addNewUser}/>
+            <Header user={user} userLogoutHandler={userLogoutHandler} loginUser={loginUser} addNewUser={addNewUser}/>
             <Home imageData={imageData}/>
-
-
-
 
 
         </div>
