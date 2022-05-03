@@ -5,7 +5,7 @@ import SignUpForm from "./SignUpForm";
 
 const Header = (props) => {
 
-    const {user, setUser, addNewUser, loginUser} = props
+    const {user, userLogoutHandler, addNewUser, loginUser} = props
 
 
     const [loginFormStatus, setLoginFormStatus] = useState(false)
@@ -38,7 +38,7 @@ const Header = (props) => {
 
             {/*Show logout button if user logged in*/}
             {user.username && <div>
-                <button onClick={() => setUser({username: '', password: ''})}>{user.username}</button>
+                <button onClick={userLogoutHandler}>{user.username}</button>
             </div>}
 
 
