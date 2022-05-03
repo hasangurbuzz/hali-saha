@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
 import Card from "./Card";
 import List from "./List";
+import Panel from "./Panel";
 
 
 const Home = (props) => {
     const {imageData} = props
+
+    const [user, setUser] = useState({username: 'admin'})
+    const [inputText, setInputText] = useState('')
+    const [panelStatus, setPanelStatus] = useState(false)
+    const [chosenElement, setChosenElement] = useState({})
+
+
+    const inputHandler = (e) => {
+        let lowerCase = e.target.value.toLowerCase();
+        setInputText(lowerCase);
+    };
 
     const listOfHalisaha = [
         {id: '1', name: 'edirne halı saha', image: 'hali-saha-1.jpg'},
@@ -13,22 +25,52 @@ const Home = (props) => {
         {id: '3', name: 'Ayşekadın halı saha', image: 'hali-saha-3.jpg'},
         {id: '4', name: 'Selimiye halı saha', image: 'hali-saha-4.jpg'},
         {id: '5', name: 'Sarayiçi halı saha', image: 'hali-saha-5.jpg'},
-        {id: '6', name: 'Toki halı saha', image: 'hali-saha-6.jpg'},
+        {id: '6', name: 'Şükrüpaşa halı saha', image: 'hali-saha-6.jpg'},
     ]
+
+    const panelStatusHandler = () => {
+        setPanelStatus(!panelStatus)
+
+
+    }
+
+    const chosenElementHandler = (element) => {
+        setChosenElement(element)
+    }
 
 
     return (
         <Container>
             <h1>Halı Sahalar</h1>
 
-            <List data={listOfHalisaha} />
+
+            {panelStatus &&
+                <Panel panelStatusHandler={panelStatusHandler} chosenElement={chosenElement}
+                       inputHandler={inputHandler}/>}
+
+            {!panelStatus &&
+                <>
 
 
-            <ImageWrapper>
-                {/*{imageData.map((data, index) =>*/}
-                {/*    <Card image={data.image} description={data.description} key={index}/>*/}
-                {/*)}*/}
-            </ImageWrapper>
+                    <SearchBarWrapper>
+                        <SearchBar value={inputText ?? ""} type={'text'} id={'searchbar'} placeholder={'Ara'}
+                                   onChange={inputHandler}/>
+                        <ClearButton onClick={() => setInputText('')}>Temizle</ClearButton>
+                    </SearchBarWrapper>
+
+                    <List listData={listOfHalisaha} searchInput={inputText} chosenElementHandler={chosenElementHandler}
+                          panelStatusHandler={panelStatusHandler}/>
+
+                </>
+            }
+
+
+            {!user.username &&
+                <ImageWrapper>
+                    {imageData.map((data, index) =>
+                        <Card image={data.image} description={data.description} key={index}/>
+                    )}
+                </ImageWrapper>}
         </Container>
     );
 };
@@ -52,3 +94,15 @@ const ImageWrapper = styled.div`
 
 `
 
+const SearchBar = styled.input`
+
+`
+const SearchBarWrapper = styled.div`
+  display: flex;
+`
+const ClearButton = styled.button`
+  
+  border: solid 1px;
+  border-radius: 2px;
+  
+`
