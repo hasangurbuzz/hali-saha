@@ -58,7 +58,6 @@ const Container = styled.div`
   right: 0;
   left: 0;
   padding: 0 20px;
-
 `
 
 const LogoImage = styled.img`
@@ -68,6 +67,7 @@ const LogoImage = styled.img`
 
 const LoginFormButton = styled.button`
   margin: 2px;
+  font-size: 13px;
 `
 
 const SignUpFormButton = styled(LoginFormButton)`

@@ -95,10 +95,14 @@ const ImageWrapper = styled.div`
 `
 
 const SearchBar = styled.input`
+    font-size: 14px;
+  
 
 `
 const SearchBarWrapper = styled.div`
   display: flex;
+  
+
 `
 const ClearButton = styled.button`
   

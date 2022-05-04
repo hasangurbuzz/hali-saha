@@ -8,5 +8,6 @@ body {
    /*background-image: url("/public/grass.jpg");;*/
   background-position: center;
   background-size: cover;
+  font-size: 14px;
 
 }
