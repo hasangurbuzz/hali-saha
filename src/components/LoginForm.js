@@ -3,22 +3,31 @@ import styled from "styled-components";
 
 const LoginForm = (props) => {
     const {status, toggler, loginUser} = props
-    const [user, setUser] = useState({username: '', password: ''})
     const [passwordStatus, setPasswordStatus] = useState(false)
+    const [inputUsername, setInputUsername] = useState('')
+    const [inputPassword, setInputPassword] = useState('')
 
+    const inputUsernameHandler = (e) => {
+        setInputUsername(e.target.value)
+    }
+    const inputPasswordHandler = (e) => {
+        setInputPassword(e.target.value)
+    }
+    const passwordHideHandler = () => {
+        setPasswordStatus(!passwordStatus)
+    }
 
-    const resetInputValue = (e) => {
-        e.value = ""
-        resetUserValue()
+    const submitValues = (e) => {
+        e.preventDefault()
+
+        loginUser({username: inputUsername, password: inputPassword}) && toggler()
+
+        setInputUsername('')
+        setInputPassword('')
+        // setUser({username: inputUsername,password: inputPassword})
+
     }
-    const resetUserValue = () => {
-        setUser({username: '', password: ''})
-    }
-    const submitValues = () => {
-        loginUser(user) && toggler()
-        resetInputValue(document.getElementById('username'))
-        resetInputValue(document.getElementById('password'))
-    }
+
 
     return (
         <Container show={status}>
@@ -26,27 +35,23 @@ const LoginForm = (props) => {
                 <button onClick={toggler}>close</button>
             </CloseButtonWrapper>
 
+            <form onSubmit={submitValues}>
+                <InputWrapper>
+                    <InputLabel>Kullanıcı Adı</InputLabel>
+                    <UsernameInput type={"text"} value={inputUsername} onChange={inputUsernameHandler}/>
+                </InputWrapper>
+                <InputWrapper>
+                    <InputLabel>Şifre</InputLabel>
+                    <PasswordInput value={inputPassword} onChange={inputPasswordHandler}
+                                   type={passwordStatus ? 'text' : 'password'}/>
+                    <ShowHidePasswordButton onChange={passwordHideHandler}
+                                            type={'checkbox'}/>
+                </InputWrapper>
 
-            {/*inputs*/}
-            <InputLabel>Kullanıcı Adı</InputLabel>
-            <UsernameInput id={'username'}
-                           onChange={(e) => setUser({...user, username: e.target.value})}/>
+                <SubmitButton type="submit">Giriş Yap</SubmitButton>
 
-            <InputLabel>Şifre</InputLabel>
-            <PasswordWrapper>
-                <PasswordInput id={'password'}
-                               type={passwordStatus ? 'text' : 'password'}
-                               onChange={(e) => setUser({...user, password: e.target.value})}
-                               onKeyDown={(e) => {
-                                   e.key === "Enter" && submitValues()
-                               }}
-                />
-                <ShowHidePasswordButton onChange={() => setPasswordStatus(!passwordStatus)}
-                                        type={'checkbox'}/>
-            </PasswordWrapper>
+            </form>
 
-
-            <SubmitButton onClick={submitValues}>Giriş Yap</SubmitButton>
 
 
         </Container>
@@ -64,7 +69,7 @@ const Container = styled.div`
   bottom: 0;
   right: 0;
   border: solid;
-  width: 200px;
+  width: 250px;
   z-index: 16;
   list-style: none;
   padding: 20px;
@@ -83,22 +88,26 @@ const Container = styled.div`
 const CloseButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
-  width: 200px;
+  width: 250px;
 
 `
 
 const InputLabel = styled.label`
-
+  font-size: 12px;
+  text-align: left;
+  width: 8vw;
 
 `
 
+
 const UsernameInput = styled.input`
-  margin: 5px;
+  margin: 5px 0 5px 5px;
   width: 15vw;
   align-items: center;
   border-radius: 10px;
   padding: 3px;
   min-width: 120px;
+  font-size: 12px;
 
 `
 
@@ -110,17 +119,17 @@ const PasswordInput = styled(UsernameInput)`
 `
 
 const SubmitButton = styled.button`
+    margin-top: 5px;
 `
-const PasswordWrapper = styled.div`
-
+const InputWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 `
 
 const ShowHidePasswordButton = styled.input`
   position: fixed;
   background: transparent;
-  right: 30px;
+  right: 20px;
 
 `
