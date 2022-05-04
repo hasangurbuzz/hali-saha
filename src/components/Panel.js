@@ -1,16 +1,25 @@
 import React from 'react';
 import styled from "styled-components";
 import Card from "./Card";
-const Panel = ({panelStatusHandler,chosenElement,inputHandler}) => {
-    const {name,image} = chosenElement
+
+const Panel = ({panelStatusHandler, chosenElement}) => {
+    const {name, image, address, tel} = chosenElement
+
+
     return (
         <Container>
-            <button onClick={()=>{
-                panelStatusHandler()
+            <Wrapper>
+                <CloseButton onClick={panelStatusHandler}>Geri</CloseButton>
 
 
-            }} >Close</button>
-            <Card image={image} description={name}/>
+                <Image bgImage={image}/>
+            </Wrapper>
+            <InfoWrapper>
+                <Info>Adres: {address}</Info>
+                <Info>Tel: {tel}</Info>
+            </InfoWrapper>
+
+
         </Container>
     );
 };
@@ -18,4 +27,36 @@ const Panel = ({panelStatusHandler,chosenElement,inputHandler}) => {
 export default Panel;
 
 const Container = styled.div`
+  display: flex;
 `
+
+
+const Image = styled.div`
+  background-image: ${props => `url("/images/${props.bgImage}")`};
+  width: 45vw;
+  height: 60vh;
+  min-height: 10vw;
+  min-width: 10vw;
+  background-position: center;
+  background-size: cover;
+  border-radius: 5px;
+
+`
+
+const InfoWrapper = styled.div`
+  
+  margin: 0 0 0 20px;
+
+`
+
+const Info = styled.p`
+`
+
+const CloseButton = styled.button`
+  position: fixed;
+`
+
+const Wrapper = styled.div`
+  display: flex;
+`
+

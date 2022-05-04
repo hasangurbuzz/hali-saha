@@ -20,12 +20,12 @@ const Home = (props) => {
     };
 
     const listOfHalisaha = [
-        {id: '1', name: 'edirne halı saha', image: 'hali-saha-1.jpg'},
-        {id: '2', name: 'Balkan halı saha', image: 'hali-saha-2.jpg'},
-        {id: '3', name: 'Ayşekadın halı saha', image: 'hali-saha-3.jpg'},
-        {id: '4', name: 'Selimiye halı saha', image: 'hali-saha-4.jpg'},
-        {id: '5', name: 'Sarayiçi halı saha', image: 'hali-saha-5.jpg'},
-        {id: '6', name: 'Şükrüpaşa halı saha', image: 'hali-saha-6.jpg'},
+        {id: '1', name: 'edirne halı saha', image: 'hali-saha-1.jpg',address: 'Edirne', tel: '01234567891'},
+        {id: '2', name: 'Balkan halı saha', image: 'hali-saha-2.jpg',address: 'Edirne', tel: '01234567892'},
+        {id: '3', name: 'Ayşekadın halı saha', image: 'hali-saha-3.jpg',address: 'Edirne', tel: '01234567893'},
+        {id: '4', name: 'Selimiye halı saha', image: 'hali-saha-4.jpg',address: 'Edirne', tel: '01234567894'},
+        {id: '5', name: 'Sarayiçi halı saha', image: 'hali-saha-5.jpg',address: 'Edirne', tel: '01234567895'},
+        {id: '6', name: 'Şükrüpaşa halı saha', image: 'hali-saha-6.jpg',address: 'Edirne', tel: '01234567896'},
     ]
 
     const panelStatusHandler = () => {
@@ -41,12 +41,12 @@ const Home = (props) => {
 
     return (
         <Container>
-            <h1>Halı Sahalar</h1>
+            {/*<h1>Halı Sahalar</h1>*/}
 
 
             {panelStatus &&
                 <Panel panelStatusHandler={panelStatusHandler} chosenElement={chosenElement}
-                       inputHandler={inputHandler}/>}
+                       />}
 
             {!panelStatus &&
                 <>
