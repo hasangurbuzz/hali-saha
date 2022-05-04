@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import Card from "./Card";
 
-const List = ({listData, searchInput,chosenElementHandler,panelStatusHandler}) => {
+const List = ({listData, searchInput, chosenElementHandler, panelStatusHandler}) => {
 
     const filteredListData = listData.filter((element) => {
         //if no input the return the original
@@ -19,7 +19,7 @@ const List = ({listData, searchInput,chosenElementHandler,panelStatusHandler}) =
     return (
         <HalisahaWrapper>
             <UnorderedList>
-                {filteredListData.map((element) =>
+                {filteredListData && filteredListData.map((element) =>
                     <ListElement key={element.id}>
                         <Element onClick={() => {
                             chosenElementHandler(element)
@@ -31,6 +31,7 @@ const List = ({listData, searchInput,chosenElementHandler,panelStatusHandler}) =
                 )}
 
             </UnorderedList>
+            {filteredListData.length < 1 && <h1>bulunamadı</h1>}
         </HalisahaWrapper>
 
     );
@@ -43,7 +44,7 @@ const HalisahaWrapper = styled.div`
 
   text-align: center;
   width: 100%;
-  
+
 
 `
 
@@ -52,8 +53,8 @@ const UnorderedList = styled.ul`
   list-style-type: none;
   width: 72%;
   margin: auto;
-  
-  
+
+
 `
 
 const ListElement = styled.li`
@@ -64,6 +65,6 @@ const ListElement = styled.li`
 const Element = styled.div`
 
   margin: 10px;
-  
+
 `
 
