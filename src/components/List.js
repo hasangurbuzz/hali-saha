@@ -5,7 +5,7 @@ import Card from "./Card";
 const List = ({listData, searchInput, chosenElementHandler, panelStatusHandler}) => {
 
     const filteredListData = listData.filter((element) => {
-        //if no input the return the original
+        //if there is not any input the return the original
         if (searchInput === '') {
             return element;
         }
