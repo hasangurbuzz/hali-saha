@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
 
-const SignUpForm = ({status, toggler, addNewUser}) => {
+const SignUpForm = ({status, toggler, signUpHandler,userList}) => {
     const [inputUsername, setInputUsername] = useState('')
     const [inputPassword, setInputPassword] = useState('')
     const [inputPasswordAgain, setInputPasswordAgain] = useState('')
@@ -23,6 +23,18 @@ const SignUpForm = ({status, toggler, addNewUser}) => {
     const generateUser = (username, password) => {
         return {username: username, password: password}
     }
+    const checkUserExists = (user) => {
+        return userList.some(e => e.username === user.username)
+    }
+    const addNewUser = (user) => {
+        if (checkUserExists(user)) {
+            // setError(true)
+            return true
+        } else {
+            signUpHandler(user)
+            return false
+        }
+    }
 
 
     const submitValues = (e) => {
@@ -37,6 +49,9 @@ const SignUpForm = ({status, toggler, addNewUser}) => {
         } else {
             alert('Şifreler uyuşmuyor')
         }
+        setInputUsername('')
+        setInputPassword('')
+        setInputPasswordAgain('')
 
     }
 
