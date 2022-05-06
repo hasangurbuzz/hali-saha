@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styled from "styled-components";
 
 const LoginForm = (props) => {
-    const {status, toggler, loginUser} = props
+    const {status, toggler, loginHandler,userList} = props
     const [passwordStatus, setPasswordStatus] = useState(false)
     const [inputUsername, setInputUsername] = useState('')
     const [inputPassword, setInputPassword] = useState('')
@@ -15,6 +15,27 @@ const LoginForm = (props) => {
     }
     const passwordHideHandler = () => {
         setPasswordStatus(!passwordStatus)
+    }
+    const checkUserExists = (user) => {
+        return userList.some(e => e.username === user.username)
+    }
+
+    const loginUser = (user) => {
+
+        //not much necessary
+        if (!checkUserExists(user)) {
+            alert('Kullanıcı bulunamadı')
+            // setError(true)
+            return false
+
+        } else if (userList.some((e) => e.username === user.username && e.password === user.password)) {
+            loginHandler(user)
+            return true
+        } else {
+            alert('Yanlış şifre')
+            return false
+        }
+
     }
 
     const submitValues = (e) => {
