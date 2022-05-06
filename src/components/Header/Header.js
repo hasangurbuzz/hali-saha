@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
-import LoginForm from "./LoginForm";
-import SignUpForm from "./SignUpForm";
+import LoginForm from "./User/LoginForm";
+import SignUpForm from "./User/SignUpForm";
 
 const Header = (props) => {
 

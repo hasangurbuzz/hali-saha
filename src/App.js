@@ -1,7 +1,7 @@
 import './App.css';
 import React, {useState} from 'react';
-import Header from "./components/Header";
-import Home from "./components/Home";
+import Header from "./components/Header/Header";
+import Home from "./components/Home/Home";
 
 
 function App() {
@@ -72,7 +72,7 @@ function App() {
     ]
 
     const [userList, setUserList] = useState(dummyUserList)
-    const [user, setUser] = useState({username: 'admin', password: ''})
+    const [user, setUser] = useState({username: '', password: ''})
     const [listOfHalisaha, setListOfHalisaha] = useState(dummyHaliSaha)
 
 
