@@ -1,23 +1,40 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
-import Card from "./Card";
+import Confirmation from "./Confirmation";
 
-const Panel = ({panelStatusHandler, chosenElement}) => {
-    const {name, image, address, tel} = chosenElement
 
+const Panel = ({panelStatusHandler, chosenElement, user, onConfirmationHandler}) => {
+
+
+    const {image, address, tel, chosenDates} = chosenElement
+
+
+    const [confirmationStatus, setConfirmationStatus] = useState(false)
+
+    const confirmationPanelHandler = () => {
+        setConfirmationStatus(!confirmationStatus)
+    }
 
     return (
         <Container>
-            <Wrapper>
-                <CloseButton onClick={panelStatusHandler}>Geri</CloseButton>
 
+            <div>
+                <ItemWrapper>
+                    <ImageWrapper>
+                        <CloseButton onClick={panelStatusHandler}>Geri</CloseButton>
+                        <Image bgImage={image}/>
+                    </ImageWrapper>
+                    <InfoWrapper>
+                        <Info>Adres: {address}</Info>
+                        <Info>Tel: {tel}</Info>
+                    </InfoWrapper>
+                </ItemWrapper>
+                <button onClick={confirmationPanelHandler}>{confirmationStatus ? 'Kapat' : 'Zaman Seç'}</button>
+            </div>
 
-                <Image bgImage={image}/>
-            </Wrapper>
-            <InfoWrapper>
-                <Info>Adres: {address}</Info>
-                <Info>Tel: {tel}</Info>
-            </InfoWrapper>
+            {confirmationStatus && <Confirmation chosenDates={chosenDates} user={user}
+                                                 confPanelHandler={confirmationPanelHandler}
+                                                 onConfirmationHandler={onConfirmationHandler}/>}
 
 
         </Container>
@@ -28,11 +45,15 @@ export default Panel;
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
 `
 
 
 const Image = styled.div`
-  background-image: ${props => `url("/images/${props.bgImage}")`};
+  background-image: ${props => {
+    const {bgImage} = props;
+    return `url("/images/${bgImage}")`;
+  }};
   width: 45vw;
   height: 60vh;
   min-height: 10vw;
@@ -40,23 +61,31 @@ const Image = styled.div`
   background-position: center;
   background-size: cover;
   border-radius: 5px;
-
 `
 
 const InfoWrapper = styled.div`
-  
+  background: darkgreen;
+  border-radius: 5px;
   margin: 0 0 0 20px;
+  padding: 10px;
 
 `
 
 const Info = styled.p`
+  font-size: 10px;
+  color: white;
 `
 
 const CloseButton = styled.button`
   position: fixed;
 `
 
-const Wrapper = styled.div`
+const ImageWrapper = styled.div`
   display: flex;
 `
+
+const ItemWrapper = styled.div`
+  display: flex;
+`
+
 
