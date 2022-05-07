@@ -1,7 +1,6 @@
 import React from 'react';
-import styled from "styled-components";
 import Card from "../UI/Card";
-
+import './List.css'
 const List = ({listData, searchInput, chosenElementHandler, panelStatusHandler}) => {
 
     const filteredListData = listData.filter((element) => {
@@ -17,55 +16,25 @@ const List = ({listData, searchInput, chosenElementHandler, panelStatusHandler})
 
 
     return (
-        <HalisahaWrapper>
-            <UnorderedList>
+        <div className={'list-container'}>
+            <ul>
                 {filteredListData && filteredListData.map((element) =>
-                    <ListElement key={element.id}>
-                        <Element onClick={() => {
+                    <li key={element.id}>
+                        <div className={'list-element'} onClick={() => {
                             chosenElementHandler(element)
                             panelStatusHandler()
                         }}>
                             <Card image={element.image} description={element.name}/>
-                        </Element>
-                    </ListElement>
+                        </div>
+                    </li>
                 )}
 
-            </UnorderedList>
-            {filteredListData.length < 1 && <h1>bulunamadı</h1>}
-        </HalisahaWrapper>
+            </ul>
+            {filteredListData.length < 1 && <h1 className={'list-not-found'}>bulunamadı</h1>}
+        </div>
 
     );
 };
 
 export default List;
-
-
-const HalisahaWrapper = styled.div`
-  
-  text-align: center;
-  width: 100%;
-
-
-`
-
-const UnorderedList = styled.ul`
-  padding: 0;
-  list-style-type: none;
-  width: 70%;
-  margin: auto;
-
-
-
-`
-
-const ListElement = styled.li`
-  float: left;
-  padding: 2px 5px;
-`
-
-const Element = styled.div`
-
-  margin: 10px;
-
-`
 

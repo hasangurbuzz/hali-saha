@@ -1,0 +1,45 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    width: 20vw;
+    background: white;
+    border-radius: 10px;
+    padding: 5px 5px 15px 5px;
+    box-shadow: 1px -1px 1px 2px;
+    cursor: pointer;
+
+
+
+}
+
+.card-container:hover {
+    transform: scale(1.2);
+    transition: all ease-in-out 0.15s;
+    box-shadow: 1px 1px 10px 2px;
+
+}
+
+.card-container:active {
+    transform: scale(0.9);
+    transition: linear 0.1s;
+}
+
+.card-image {
+    width: 20vw;
+    height: 25vh;
+    min-height: 10vw;
+    min-width: 10vw;
+    max-height: 20vw;
+    background-position: center;
+    background-size: cover;
+    border-radius: 10px;
+
+}
+
+.card-info {
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 600;
+
+}

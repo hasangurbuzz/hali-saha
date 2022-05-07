@@ -1,0 +1,24 @@
+.list-container{
+    text-align: center;
+    width: 100%;
+}
+
+ul{
+    padding: 0;
+    list-style-type: none;
+    width: 70%;
+    margin: auto;
+}
+
+li{
+    float: left;
+    padding: 2px 5px;
+}
+
+.list-element{
+    margin: 10px;
+}
+
+.list-not-found{
+
+}

@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import styled from "styled-components";
-
+import './Confirmation.css'
 
 const Confirmation = ({confPanelHandler, user, chosenDates, onConfirmationHandler}) => {
 
@@ -73,78 +72,30 @@ const Confirmation = ({confPanelHandler, user, chosenDates, onConfirmationHandle
 
 
     return (
-        <Container>
-            <label>Tarih</label>
-            <DatePicker type="date" onChange={dateHandler} value={inputDate} min={today} max={'2022-12-31'}/>
-            <label>Saat</label>
-            <OrderedList>
+        <div className={'confirmation-container'}>
+            <label className={'input-label'}>Tarih</label>
+            <input className={'confirmation-date-picker'} type="date" onChange={dateHandler} value={inputDate} min={today} max={'2022-12-31'}/>
+            <label className={'input-label'}>Saat</label>
+            <ol>
                 {hours.map((hour) =>
-                    <Hours key={hour}>
-                        <label>{hour}:00</label>
-                        <HourChooseButton name={hour} onChange={hourHandler} type={'checkbox'}
+                    <li key={hour}>
+                        <label className={'confirmation-input-label'}>{hour}:00</label>
+                        <input className={'confirmation-checkbox'} name={hour.toString()} onChange={hourHandler} type={'checkbox'}
                                           disabled={reserved.includes(hour.toString())}
                         />
-                    </Hours>
+                    </li>
                 )}
-            </OrderedList>
-            <ButtonWrapper>
+            </ol>
+            <div className={'confirmation-btn-wrapper'}>
 
-                <SubmitButton disabled={!isUserActive()} onClick={submitValues}>
+                <button className={'confirmation-submit-btn'} disabled={!isUserActive()} onClick={submitValues}>
                     {isUserActive() ? 'Onayla' : 'Giriş Yap'}
-                </SubmitButton>
+                </button>
 
 
-            </ButtonWrapper>
-        </Container>
+            </div>
+        </div>
     );
 };
 
 export default Confirmation;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-
-`
-
-const OrderedList = styled.ol`
-  padding: 0;
-  list-style-type: none;
-  width: 30vw;
-  columns: 4;
-  margin: 0;
-  border: solid;
-  border-radius: 5px;
-  text-align: center;
-`
-
-const Hours = styled.li`
-  display: inline-grid;
-  padding: 2px;
-
-`
-
-const HourChooseButton = styled.input`
-
-`
-const DatePicker = styled.input`
-  text-align: center;
-`
-
-
-const SubmitButton = styled.button`
-
-  background: green;
-  border: solid 1px;
-  text-transform: uppercase;
-  color: white;
-
-
-
-`
-
-const ButtonWrapper = styled.div`
-  display: flex;
-`

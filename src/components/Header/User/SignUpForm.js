@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
-import styled from "styled-components";
-import Popup from "../../UI/Popup";
+import './Form.css'
 
 const SignUpForm = ({status, toggler, signUpHandler, userList}) => {
     const [inputUsername, setInputUsername] = useState('')
@@ -57,125 +56,38 @@ const SignUpForm = ({status, toggler, signUpHandler, userList}) => {
     }
 
     return (
-        <Container show={status}>
-            <CloseButtonWrapper>
-                <CloseButton onClick={toggler}>&times;</CloseButton>
-            </CloseButtonWrapper>
+        <div className={'form-container'} style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),url(/images/ball.jpg)`,
+            transform: status ? 'translateX(0)' : 'translateX(100%)'
+
+        }}>
+            <div className={'close-btn-wrapper'}>
+                <button className={'close-btn'} onClick={toggler}>&times;</button>
+            </div>
 
             <div>
                 <form onSubmit={submitValues}>
-                    <InputWrapper>
-                        <InputLabel>Kullanıcı Adı</InputLabel>
-                        <UsernameInput type={"text"} value={inputUsername} onChange={inputUsernameHandler}/>
-                    </InputWrapper>
-                    <InputWrapper>
-                        <InputLabel>Şifre</InputLabel>
-                        <PasswordInput value={inputPassword} onChange={inputPasswordHandler} type={'password'}/>
-                    </InputWrapper>
-                    <InputWrapper>
-                        <InputLabel>Şifre Tekrar</InputLabel>
-                        <PasswordInput value={inputPasswordAgain} onChange={inputPasswordAgainHandler}
+                    <div className={'input-wrapper'}>
+                        <label className={'input-label'}>Kullanıcı Adı</label>
+                        <input className={'user-input'} type={"text"} value={inputUsername} onChange={inputUsernameHandler}/>
+                    </div>
+                    <div className={'input-wrapper'}>
+                        <label className={'input-label'}>Şifre</label>
+                        <input className={'user-input'} value={inputPassword} onChange={inputPasswordHandler} type={'password'}/>
+                    </div>
+                    <div className={'input-wrapper'}>
+                        <label className={'input-label'}>Şifre Tekrar</label>
+                        <input className={'user-input'} value={inputPasswordAgain} onChange={inputPasswordAgainHandler}
                                        type={'password'}/>
-                    </InputWrapper>
+                    </div>
 
-                    <SubmitButton type="submit">Kaydol</SubmitButton>
+                    <button className={'submit-btn'} type="submit">Kaydol</button>
 
                 </form>
             </div>
 
-        </Container>
+        </div>
     );
 };
 
 export default SignUpForm;
-
-//Styling part
-
-const Container = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 400px;
-  z-index: 16;
-  list-style: none;
-  padding: 40px 40px 0 40px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/ball.jpg");
-  background-size: cover;
-  background-position: center;
-  box-shadow: -10px 0 20px -5px;
-
-  transform: ${props => {
-    const {show} = props;
-    return show ? 'translateX(0)' : 'translateX(100%)';
-  }};
-  transition: all ease-in-out 0.2s;
-`
-
-
-const InputLabel = styled.label`
-  font-size: 16px;
-  text-align: left;
-  width: 8vw;
-  color: white;
-  font-weight: 500;
-
-`
-
-const UsernameInput = styled.input`
-  margin: 15px 0 5px 5px;
-  width: 15vw;
-  align-items: center;
-  border-radius: 5px;
-  padding: 3px;
-  min-width: 120px;
-  font-size: 16px;
-
-`
-const InputWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`
-
-const PasswordInput = styled(UsernameInput)`
-`
-
-const SubmitButton = styled.button`
-  margin-top: 20px;
-  background: darkgreen;
-  cursor: pointer;
-  color: white;
-  font-size: 16px;
-  padding: 10px 20px 10px 20px;
-  border-radius: 5px;
-  :active {
-    transform: scale(0.9);
-  }
-
-`
-
-const CloseButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 25vw;
-
-`
-
-const CloseButton = styled.button`
-  border: none;
-  border-radius: 2px;
-  right: 0;
-  background: transparent;
-  color: white;
-  cursor: pointer;
-  font-size: 30px;
-
-  :hover {
-    color: red;
-  }
-
-`

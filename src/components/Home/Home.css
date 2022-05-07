@@ -1,0 +1,89 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 150px;
+    padding-bottom: 50px;
+
+}
+
+.search-bar {
+    font-size: 16px;
+    border-radius: 2px;
+    border: none;
+    padding: 15px;
+    width: 30vw;
+    margin-bottom: 30px;
+}
+
+.search-bar-wrapper {
+    display: flex;
+    position: relative;
+}
+
+.search-bar-clear-btn {
+    position: absolute;
+    border: none;
+    bottom: 45%;
+    right: 0;
+    background: transparent;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.search-bar-clear-btn:hover {
+    color: red;
+}
+
+.search-bar-clear-btn:active {
+    transform: scale(0.9);
+}
+
+.rolling-ball {
+    background: url("/public/images/football.png") center;
+    background-size: cover;
+    position: fixed;
+    animation-fill-mode: forwards;
+    width: 150px;
+    height: 150px;
+    animation: hide 0s, rollin 5s forwards;
+    animation-delay: 5s;
+    visibility: hidden;
+
+
+}
+
+@-webkit-keyframes hide {
+    to {
+        width: 0;
+        height: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes hide {
+    to {
+        width: 0;
+        height: 0;
+        overflow: hidden;
+    }
+}
+
+@keyframes rollin {
+    from {
+        margin-left: 200%;
+        transform: rotate(0deg);
+        visibility: visible;
+    }
+
+    to {
+        margin-left: -200%;
+        transform: rotate(-1500deg);
+        width: 100px;
+        height: 100px;
+        display: none;
+
+
+    }
+}
