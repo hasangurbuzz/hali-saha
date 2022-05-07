@@ -90,30 +90,16 @@ const SignUpForm = ({status, toggler, signUpHandler, userList}) => {
 export default SignUpForm;
 
 //Styling part
-const CloseButton = styled.button`
-  border: none;
-  border-radius: 2px;
-  right: 0;
-  background: transparent;
-  color: white;
-  cursor:pointer;
-  font-size: 20px;
-  :hover{
-    color: red;
-  }
-  
-
-`
 
 const Container = styled.div`
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
-  width: 250px;
+  width: 400px;
   z-index: 16;
   list-style: none;
-  padding: 20px;
+  padding: 40px 40px 0 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,18 +112,12 @@ const Container = styled.div`
     const {show} = props;
     return show ? 'translateX(0)' : 'translateX(100%)';
   }};
-  transition:all ease-in-out 0.2s;
+  transition: all ease-in-out 0.2s;
 `
 
-const CloseButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 250px;
-
-`
 
 const InputLabel = styled.label`
-  font-size: 12px;
+  font-size: 16px;
   text-align: left;
   width: 8vw;
   color: white;
@@ -146,13 +126,13 @@ const InputLabel = styled.label`
 `
 
 const UsernameInput = styled.input`
-  margin: 5px 0 5px 5px;
+  margin: 15px 0 5px 5px;
   width: 15vw;
   align-items: center;
   border-radius: 5px;
   padding: 3px;
   min-width: 120px;
-  font-size: 12px;
+  font-size: 16px;
 
 `
 const InputWrapper = styled.div`
@@ -165,15 +145,37 @@ const PasswordInput = styled(UsernameInput)`
 `
 
 const SubmitButton = styled.button`
-      margin-top: 20px;
-      background: darkgreen;
-      cursor: pointer;
-      color: white;
-      font-size: 15px;
-      padding: 10px 20px 10px 20px;
-      border-radius: 5px;
-      :active{
-        transform: scale(0.9);
-      }
-  
+  margin-top: 20px;
+  background: darkgreen;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  :active {
+    transform: scale(0.9);
+  }
+
+`
+
+const CloseButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 25vw;
+
+`
+
+const CloseButton = styled.button`
+  border: none;
+  border-radius: 2px;
+  right: 0;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 30px;
+
+  :hover {
+    color: red;
+  }
+
 `

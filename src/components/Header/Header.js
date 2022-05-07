@@ -71,12 +71,13 @@ const LogoImage = styled.img`
 `
 
 const LoginFormButton = styled.button`
-  margin: 5px;
+  margin: 10px;
   background: transparent;
   color: white;
   border: none;
   font-weight: 600;
   cursor:pointer;
+  font-size:18px;
   :hover {
     border: solid 2px white;
     border-radius: 5px;

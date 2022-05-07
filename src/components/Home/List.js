@@ -51,7 +51,7 @@ const HalisahaWrapper = styled.div`
 const UnorderedList = styled.ul`
   padding: 0;
   list-style-type: none;
-  width: 75%;
+  width: 70%;
   margin: auto;
 
 

@@ -49,6 +49,7 @@ const Image = styled.div`
 `
 const Description = styled.p`
   text-transform: capitalize;
+  font-size: 18px;
   font-weight: 600;
 
 

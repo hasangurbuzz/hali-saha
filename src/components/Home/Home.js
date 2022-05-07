@@ -68,7 +68,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
+  padding-top: 150px;
   padding-bottom: 50px;
 
 
@@ -78,11 +78,13 @@ const Container = styled.div`
 
 
 const SearchBar = styled.input`
-  font-size: 14px;
+  font-size: 16px;
   border-radius: 2px;
   border: none;
-  padding: 5px;
+  padding: 10px;
   width: 30vw;
+  
+  
 
 
 
@@ -97,9 +99,9 @@ const ClearButton = styled.button`
   position: absolute;
   border: none;
   border-radius: 2px;
-  right: 0;
+  right: 5px;
   background: transparent;
-  font-size: 20px;
+  font-size: 30px;
   cursor: pointer;
 
   :hover {

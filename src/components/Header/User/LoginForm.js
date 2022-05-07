@@ -53,7 +53,7 @@ const LoginForm = (props) => {
     return (
         <Container show={status}>
             <CloseButtonWrapper>
-                <button onClick={toggler}>close</button>
+                <CloseButton onClick={toggler}>&times;</CloseButton>
             </CloseButtonWrapper>
 
             <form onSubmit={submitValues}>
@@ -90,10 +90,10 @@ const Container = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
-  width: 250px;
+  width: 400px;
   z-index: 16;
   list-style: none;
-  padding: 20px;
+  padding: 40px 40px 0 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -109,15 +109,10 @@ const Container = styled.div`
   transition: transform 0.2s;
 `
 
-const CloseButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 250px;
 
-`
 
 const InputLabel = styled.label`
-  font-size: 12px;
+  font-size: 16px;
   text-align: left;
   width: 8vw;
   color: white;
@@ -128,13 +123,13 @@ const InputLabel = styled.label`
 
 
 const UsernameInput = styled.input`
-  margin: 5px 0 5px 5px;
+  margin: 15px 0 5px 5px;
   width: 15vw;
   align-items: center;
   border-radius: 5px;
   padding: 3px;
   min-width: 120px;
-  font-size: 12px;
+  font-size: 16px;
 `
 
 const PasswordInput = styled(UsernameInput)`
@@ -152,7 +147,8 @@ const SubmitButton = styled.button`
   font-size: 15px;
   padding: 10px 20px 10px 20px;
   border-radius: 5px;
-  :active{
+
+  :active {
     transform: scale(0.9);
   }
 `
@@ -166,5 +162,31 @@ const ShowHidePasswordButton = styled.input`
   position: fixed;
   background: transparent;
   right: 20px;
+  width: 20px;
+  height: 20px;
+
+`
+
+const CloseButton = styled.button`
+  border: none;
+  border-radius: 2px;
+  right: 0;
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 30px;
+  
+  :hover {
+    color: red;
+  }
+
+
+`
+
+const CloseButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  width: 25vw;
+  
 
 `
