@@ -23,12 +23,12 @@ const Header = (props) => {
 
     return (
         <Container>
-            <LogoImage src={'logo_new_transparent.png'}/>
+            <LogoImage src={'logo_new_transparent.png'} onClick={()=>window.location.href='/'}/>
 
             {/*Show signup & login buttons when user not logged in*/}
             {!user.username &&
                 <ButtonWrapper>
-                    <SignUpFormButton onClick={toggleSignUpForm}>Kayıt Ol</SignUpFormButton>
+                    <SignUpFormButton onClick={toggleSignUpForm}>Kaydol</SignUpFormButton>
                     <LoginFormButton onClick={toggleLoginForm}>Giriş Yap</LoginFormButton>
                 </ButtonWrapper>
             }
@@ -58,6 +58,11 @@ const Container = styled.div`
   right: 0;
   left: 0;
   padding: 0 20px;
+  position: fixed;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 1px 1px 10px 1px;
+
 `
 
 const LogoImage = styled.img`
@@ -66,8 +71,18 @@ const LogoImage = styled.img`
 `
 
 const LoginFormButton = styled.button`
-  margin: 2px;
-  font-size: 13px;
+  margin: 5px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-weight: 600;
+  cursor:pointer;
+  :hover {
+    border: solid 2px white;
+    border-radius: 5px;
+    padding: 2px;
+  }
+  
 `
 
 const SignUpFormButton = styled(LoginFormButton)`

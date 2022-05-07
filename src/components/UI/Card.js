@@ -18,7 +18,21 @@ const Container = styled.div`
   flex-direction: column;
   place-items: center;
   width: 20vw;
+  background: white;
+  border-radius: 10px;
+  padding: 5px;
+  box-shadow: 1px -1px 1px 2px;
+  cursor: pointer;
   
+  :hover {
+    transform: scale(1.2);
+    transition: all ease-in-out 0.15s;
+    box-shadow: 1px 1px 10px 2px;
+
+  }
+
+
+
 `
 
 const Image = styled.div`
@@ -34,6 +48,13 @@ const Image = styled.div`
 
 `
 const Description = styled.p`
-  color: green;
   text-transform: capitalize;
+  font-weight: 600;
+
+
+
+
+
+
+
 `

@@ -18,10 +18,10 @@ const Panel = ({panelStatusHandler, chosenElement, user, onConfirmationHandler})
     return (
         <Container>
 
-            <div>
+            <>
                 <ItemWrapper>
                     <ImageWrapper>
-                        <CloseButton onClick={panelStatusHandler}>Geri</CloseButton>
+                        <CloseButton onClick={panelStatusHandler}>&lArr;</CloseButton>
                         <Image bgImage={image}/>
                     </ImageWrapper>
                     <InfoWrapper>
@@ -30,7 +30,7 @@ const Panel = ({panelStatusHandler, chosenElement, user, onConfirmationHandler})
                     </InfoWrapper>
                 </ItemWrapper>
                 <button onClick={confirmationPanelHandler}>{confirmationStatus ? 'Kapat' : 'Zaman Seç'}</button>
-            </div>
+            </>
 
             {confirmationStatus && <Confirmation chosenDates={chosenDates} user={user}
                                                  confPanelHandler={confirmationPanelHandler}
@@ -46,6 +46,8 @@ export default Panel;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+
 `
 
 
@@ -78,6 +80,38 @@ const Info = styled.p`
 
 const CloseButton = styled.button`
   position: fixed;
+  left: 20px;
+  top:50%;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+ 
+  //animation-duration: 5s;
+  //animation-name: slidein;
+  animation: 5s slidein;
+    
+  
+  @keyframes slidein {
+    from {
+      margin-left: 20%;
+    }
+    to {
+      margin-left: 0;
+      
+    }
+  }
+  @keyframes slideout {
+    from {
+      margin-left: 0;
+    }
+    to {
+      margin-left: 20%;
+    }
+
+    
+  }
 `
 
 const ImageWrapper = styled.div`

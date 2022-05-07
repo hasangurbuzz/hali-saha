@@ -41,7 +41,7 @@ export default List;
 
 
 const HalisahaWrapper = styled.div`
-
+  
   text-align: center;
   width: 100%;
 
@@ -51,8 +51,9 @@ const HalisahaWrapper = styled.div`
 const UnorderedList = styled.ul`
   padding: 0;
   list-style-type: none;
-  width: 72%;
+  width: 75%;
   margin: auto;
+
 
 
 `

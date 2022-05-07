@@ -2,6 +2,7 @@ import './App.css';
 import React, {useState} from 'react';
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
+import Popup from "./components/UI/Popup";
 
 
 function App() {
@@ -74,6 +75,8 @@ function App() {
     const [userList, setUserList] = useState(dummyUserList)
     const [user, setUser] = useState({username: '', password: ''})
     const [listOfHalisaha, setListOfHalisaha] = useState(dummyHaliSaha)
+    const [popupState, setPopupState] = useState(false)
+    const [popupInfo, setPopupInfo] = useState("")
 
 
     const signUpHandler = (user) => {
@@ -92,6 +95,13 @@ function App() {
         let templist = listOfHalisaha.filter((x) => x.id !== element.id)
         setListOfHalisaha([...templist, element])
 
+    }
+
+
+    const popupHandler = (info) => {
+        setPopupState(!popupState)
+        if (typeof info === 'string') setPopupInfo(info)
+        else setPopupInfo("")
 
     }
 
@@ -100,7 +110,11 @@ function App() {
         <div className="App">
             <Header user={user} userLogoutHandler={userLogoutHandler} loginHandler={loginHandler}
                     signUpHandler={signUpHandler} userList={userList}/>
-            <Home user={user} listOfHaliSaha={listOfHalisaha} onAddReservationHandler={onAddReservationHandler}/>
+            <Home user={user} listOfHaliSaha={listOfHalisaha} onAddReservationHandler={onAddReservationHandler}
+            popupHandler={popupHandler}/>
+            <Popup info={popupInfo} popupStateHandler={popupHandler} show={popupState}/>
+
+
 
 
         </div>

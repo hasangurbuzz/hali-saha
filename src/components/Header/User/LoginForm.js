@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import styled from "styled-components";
+import Popup from "../../UI/Popup";
 
 const LoginForm = (props) => {
-    const {status, toggler, loginHandler,userList} = props
+    const {status, toggler, loginHandler, userList} = props
     const [passwordStatus, setPasswordStatus] = useState(false)
     const [inputUsername, setInputUsername] = useState('')
     const [inputPassword, setInputPassword] = useState('')
@@ -24,8 +25,7 @@ const LoginForm = (props) => {
 
         //not much necessary
         if (!checkUserExists(user)) {
-            alert('Kullanıcı bulunamadı')
-            // setError(true)
+            alert("Kullanıcı Bulunamadı")
             return false
 
         } else if (userList.some((e) => e.username === user.username && e.password === user.password)) {
@@ -73,6 +73,7 @@ const LoginForm = (props) => {
 
             </form>
 
+            {/*<Popup show={popupState} popupStateHandler={popupHandler} info={popupInfo}/>*/}
 
 
         </Container>
@@ -89,7 +90,6 @@ const Container = styled.div`
   top: 0;
   bottom: 0;
   right: 0;
-  border: solid;
   width: 250px;
   z-index: 16;
   list-style: none;
@@ -97,7 +97,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: wheat;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/images/shoe.jpg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: -10px 0 20px -5px;
 
   transform: ${props => {
     const {show} = props;
@@ -117,6 +120,9 @@ const InputLabel = styled.label`
   font-size: 12px;
   text-align: left;
   width: 8vw;
+  color: white;
+  font-weight: 500;
+
 
 `
 
@@ -125,11 +131,10 @@ const UsernameInput = styled.input`
   margin: 5px 0 5px 5px;
   width: 15vw;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 5px;
   padding: 3px;
   min-width: 120px;
   font-size: 12px;
-
 `
 
 const PasswordInput = styled(UsernameInput)`
@@ -140,7 +145,16 @@ const PasswordInput = styled(UsernameInput)`
 `
 
 const SubmitButton = styled.button`
-    margin-top: 5px;
+  margin-top: 20px;
+  background: darkgreen;
+  cursor: pointer;
+  color: white;
+  font-size: 15px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  :active{
+    transform: scale(0.9);
+  }
 `
 const InputWrapper = styled.div`
   display: flex;
