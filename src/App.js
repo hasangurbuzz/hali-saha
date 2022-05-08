@@ -48,7 +48,7 @@ function App() {
             <Header user={user} userLogoutHandler={userLogoutHandler} loginHandler={loginHandler}
                     signUpHandler={signUpHandler} userList={userList} triggerPopup={triggerPopup}/>
             <Home user={user} listOfHaliSaha={listOfHalisaha} onAddReservationHandler={onAddReservationHandler}
-                  popupHandler={popupHandler} triggerPopup={triggerPopup}/>
+                   triggerPopup={triggerPopup}/>
             <Popup info={popupInfo} popupStateHandler={popupHandler} show={popupState}/>
 
 

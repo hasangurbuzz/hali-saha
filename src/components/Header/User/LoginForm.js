@@ -3,7 +3,7 @@ import './Form.css'
 
 
 const LoginForm = (props) => {
-    const {status, toggler, loginHandler, userList,triggerPopup} = props
+    const {status, toggler, loginHandler, userList, triggerPopup} = props
     const [passwordStatus, setPasswordStatus] = useState(false)
     const [inputUsername, setInputUsername] = useState('')
     const [inputPassword, setInputPassword] = useState('')
@@ -22,20 +22,23 @@ const LoginForm = (props) => {
     }
 
     const loginUser = (user) => {
-
-        //not much necessary
-        if (!checkUserExists(user)) {
-            triggerPopup('Kullanıcı bulunamadı')
-            return false
-
-        } else if (userList.some((e) => e.username === user.username && e.password === user.password)) {
-            loginHandler(user)
-            triggerPopup('hoşgeldiniz')
-            return true
+        if (user.username === "" || user.password === '') {
+            triggerPopup('Kullanıcı adı ve şifre girmeniz gerek')
         } else {
-            triggerPopup('şifre yanlış')
-            return false
+            if (!checkUserExists(user)) {
+                triggerPopup('Kullanıcı bulunamadı')
+                return false
+
+            } else if (userList.some((e) => e.username === user.username && e.password === user.password)) {
+                loginHandler(user)
+                triggerPopup('Hoşgeldin '+user.username)
+                return true
+            } else {
+                triggerPopup('şifre yanlış')
+                return false
+            }
         }
+
 
     }
 
@@ -63,14 +66,15 @@ const LoginForm = (props) => {
             <form onSubmit={submitValues}>
                 <div className={'input-wrapper'}>
                     <label className={'input-label'}>Kullanıcı Adı</label>
-                    <input className={'user-input'} type={"text"} value={inputUsername} onChange={inputUsernameHandler}/>
+                    <input className={'user-input'} type={"text"} value={inputUsername}
+                           onChange={inputUsernameHandler}/>
                 </div>
-                <div className={'input-wrapper'} >
+                <div className={'input-wrapper'}>
                     <label className={'input-label'}>Şifre</label>
                     <input className={'user-input'} value={inputPassword} onChange={inputPasswordHandler}
-                                   type={passwordStatus ? 'text' : 'password'}/>
+                           type={passwordStatus ? 'text' : 'password'}/>
                     <input className={'show-password-btn'} onChange={passwordHideHandler}
-                                            type={'checkbox'}/>
+                           type={'checkbox'}/>
                 </div>
 
                 <button className={'submit-btn'} type="submit">Giriş Yap</button>
