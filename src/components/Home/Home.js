@@ -5,7 +5,7 @@ import "./Home.css"
 
 
 const Home = (props) => {
-    const {user, listOfHaliSaha, onAddReservationHandler, popupHandler} = props
+    const {user, listOfHaliSaha, onAddReservationHandler, triggerPopup} = props
 
 
     const [inputText, setInputText] = useState('')
@@ -36,7 +36,7 @@ const Home = (props) => {
         <div className={'home-container'}>
             {panelStatus &&
                 <Panel user={user} panelStatusHandler={panelStatusHandler} chosenElement={chosenElement}
-                       onConfirmationHandler={onConfirmationHandler} popupHandler={popupHandler}
+                       onConfirmationHandler={onConfirmationHandler} triggerPopup={triggerPopup}
                 />}
 
             {!panelStatus &&

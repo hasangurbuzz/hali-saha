@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './Form.css'
 
-const SignUpForm = ({status, toggler, signUpHandler, userList}) => {
+const SignUpForm = ({status, toggler, signUpHandler, userList, triggerPopup}) => {
     const [inputUsername, setInputUsername] = useState('')
     const [inputPassword, setInputPassword] = useState('')
     const [inputPasswordAgain, setInputPasswordAgain] = useState('')
@@ -41,13 +41,14 @@ const SignUpForm = ({status, toggler, signUpHandler, userList}) => {
         e.preventDefault()
         if (arePasswordsMatching()) {
             if (addNewUser(generateUser(inputUsername, inputPassword))) {
-                alert("Kullanıcı adı alınmış")
+                triggerPopup("Kullanıcı adı alınmış")
+
             } else {
                 toggler()
-                alert("Kayıt tamamlandı")
+                triggerPopup("Kayıt tamamlandı")
             }
         } else {
-            alert('Şifreler uyuşmuyor')
+            triggerPopup("Şifreler uyuşmuyor")
         }
         setInputUsername('')
         setInputPassword('')
@@ -69,16 +70,20 @@ const SignUpForm = ({status, toggler, signUpHandler, userList}) => {
                 <form onSubmit={submitValues}>
                     <div className={'input-wrapper'}>
                         <label className={'input-label'}>Kullanıcı Adı</label>
-                        <input className={'user-input'} type={"text"} value={inputUsername} onChange={inputUsernameHandler}/>
+                        <input className={'user-input'} type={"text"} value={inputUsername}
+                               onChange={inputUsernameHandler}/>
                     </div>
                     <div className={'input-wrapper'}>
                         <label className={'input-label'}>Şifre</label>
-                        <input className={'user-input'} value={inputPassword} onChange={inputPasswordHandler} type={'password'}/>
+                        <input className={'user-input'} value={inputPassword} onChange={inputPasswordHandler}
+                               type={'password'}
+                               style={{border: arePasswordsMatching() ? 'solid 1px black' : ' solid 1px red'}}/>
                     </div>
                     <div className={'input-wrapper'}>
                         <label className={'input-label'}>Şifre Tekrar</label>
                         <input className={'user-input'} value={inputPasswordAgain} onChange={inputPasswordAgainHandler}
-                                       type={'password'}/>
+                               type={'password'}
+                               style={{border: arePasswordsMatching() ? 'solid 1px black' : ' solid 1px red'}}/>
                     </div>
 
                     <button className={'submit-btn'} type="submit">Kaydol</button>

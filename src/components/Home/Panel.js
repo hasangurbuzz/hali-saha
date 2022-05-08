@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Confirmation from "./Confirmation";
 import './Panel.css'
 
-const Panel = ({panelStatusHandler, chosenElement, user, onConfirmationHandler}) => {
+const Panel = ({panelStatusHandler, chosenElement, user, onConfirmationHandler, triggerPopup}) => {
 
 
     const {image, address, tel, chosenDates} = chosenElement
@@ -34,7 +34,8 @@ const Panel = ({panelStatusHandler, chosenElement, user, onConfirmationHandler})
 
             {confirmationStatus && <Confirmation chosenDates={chosenDates} user={user}
                                                  confPanelHandler={confirmationPanelHandler}
-                                                 onConfirmationHandler={onConfirmationHandler}/>}
+                                                 onConfirmationHandler={onConfirmationHandler}
+                                                 triggerPopup={triggerPopup}/>}
 
 
         </div>
