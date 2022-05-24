@@ -1,6 +1,7 @@
 import React from 'react';
 import Card from "../UI/Card";
 import './List.css'
+
 const List = ({listData, searchInput, chosenElementHandler, panelStatusHandler}) => {
 
     const filteredListData = listData.filter((element) => {
@@ -17,9 +18,9 @@ const List = ({listData, searchInput, chosenElementHandler, panelStatusHandler})
 
     return (
         <div className={'list-container'}>
-            <ul>
+            <ul className={'list-ul'}>
                 {filteredListData && filteredListData.map((element) =>
-                    <li key={element.id}>
+                    <li className={'list-li'} key={element.id}>
                         <div className={'list-element'} onClick={() => {
                             chosenElementHandler(element)
                             panelStatusHandler()

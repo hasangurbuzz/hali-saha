@@ -31,10 +31,9 @@ const LoginForm = (props) => {
 
             } else if (userList.some((e) => e.username === user.username && e.password === user.password)) {
                 loginHandler(user)
-                triggerPopup('Hoşgeldin '+user.username)
+                triggerPopup('Hoşgeldin ' + user.username)
                 return true
             } else {
-                triggerPopup('şifre yanlış')
                 return false
             }
         }

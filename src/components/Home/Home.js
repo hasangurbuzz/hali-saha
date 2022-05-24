@@ -39,6 +39,7 @@ const Home = (props) => {
                        onConfirmationHandler={onConfirmationHandler} triggerPopup={triggerPopup}
                 />}
 
+
             {!panelStatus &&
                 <>
                     <div className={'search-bar-wrapper'}>

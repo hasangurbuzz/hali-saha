@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './Confirmation.css'
 
-const Confirmation = ({confPanelHandler, user, chosenDates, onConfirmationHandler}) => {
+const Confirmation = ({ confPanelHandler, user, chosenDates, onConfirmationHandler }) => {
 
     const hours = Array.from(Array(24).keys())
     const formatDate = (date) => {
@@ -73,7 +73,7 @@ const Confirmation = ({confPanelHandler, user, chosenDates, onConfirmationHandle
     //created for handling list element
     const liHandler = (e) => {
 
-        const {id} = e.target
+        const { id } = e.target
         if (!reserved.includes(id)) {
             const elem = inputCheckbox.get(id)
             if (elem === true || elem === false) {
@@ -89,26 +89,26 @@ const Confirmation = ({confPanelHandler, user, chosenDates, onConfirmationHandle
 
     return (
         <div className={'confirmation-container'}>
-            <hr className={"rounded"}/>
+            <hr className={"rounded"} />
             <label className={'confirmation-input-label'}>Tarih Seçin</label>
             <input className={'confirmation-date-picker'} type="date" onChange={dateHandler} value={inputDate}
-                   min={today} max={'2022-12-31'}/>
-            <hr className={"rounded"}/>
+                min={today} max={'2022-12-31'} />
+            <hr className={"rounded"} />
             <label className={'confirmation-input-label'}>Saat Seçin</label>
             <ol className={'confirmation-ol'}>
                 {hours.map((hour) =>
                     <li className={'confirmation-li'} key={hour} onClick={liHandler} id={hour.toString()}>
                         <label className={'confirmation-checkbox-label'}>{hour}:00</label>
                         <input className={'confirmation-checkbox'}   /*onChange={hourHandler}*/
-                               type={'checkbox'}
-                               disabled={reserved.includes(hour.toString())}
-                               id={hour.toString()}
-                               checked={inputCheckbox.get(hour.toString())}
+                            type={'checkbox'}
+                            disabled={reserved.includes(hour.toString())}
+                            id={hour.toString()}
+                            checked={inputCheckbox.get(hour.toString())}
                         />
                     </li>
                 )}
             </ol>
-            <hr className={"rounded"}/>
+            <hr className={"rounded"} />
 
             <div className={'confirmation-btn-wrapper'}>
 

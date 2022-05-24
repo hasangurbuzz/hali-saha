@@ -5,12 +5,11 @@ import './Header.css'
 
 const Header = (props) => {
 
-    const {user, userLogoutHandler,triggerPopup} = props
+    const {user, userLogoutHandler, triggerPopup} = props
 
 
     const [loginFormStatus, setLoginFormStatus] = useState(false)
     const [signUpFormStatus, setSignUpFormStatus] = useState(false)
-
 
 
     const toggleLoginForm = () => {

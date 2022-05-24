@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Confirmation from "./Confirmation";
 import './Panel.css'
 
-const Panel = ({panelStatusHandler, chosenElement, user, onConfirmationHandler, triggerPopup}) => {
+const Panel = ({ panelStatusHandler, chosenElement, user, onConfirmationHandler, triggerPopup }) => {
 
 
-    const {image, address, tel, chosenDates} = chosenElement
+    const { image, address, tel, chosenDates } = chosenElement
 
 
     const [confirmationStatus, setConfirmationStatus] = useState(false)
@@ -21,7 +21,7 @@ const Panel = ({panelStatusHandler, chosenElement, user, onConfirmationHandler, 
                 <div className={'panel-item-wrapper'}>
                     <div className={'panel-image-wrapper'}>
                         <button className={'panel-close-btn'} onClick={panelStatusHandler}>&lArr;</button>
-                        <div className={'panel-image'} style={{backgroundImage: `url("/images/${image}")`}}/>
+                        <div className={'panel-image'} style={{ backgroundImage: `url("/images/${image}")` }} />
                     </div>
                     <div className={'panel-info-wrapper'}>
                         <p className={'panel-info'}>Adres: {address}</p>
@@ -29,13 +29,13 @@ const Panel = ({panelStatusHandler, chosenElement, user, onConfirmationHandler, 
                     </div>
                 </div>
                 <button className={'panel-open-confirmation-btn'}
-                        onClick={confirmationPanelHandler}>{confirmationStatus ? 'Kapat' : 'Zaman Seç'}</button>
+                    onClick={confirmationPanelHandler}>{confirmationStatus ? 'Kapat' : 'Zaman Seç'}</button>
             </>
 
             {confirmationStatus && <Confirmation chosenDates={chosenDates} user={user}
-                                                 confPanelHandler={confirmationPanelHandler}
-                                                 onConfirmationHandler={onConfirmationHandler}
-                                                 triggerPopup={triggerPopup}/>}
+                confPanelHandler={confirmationPanelHandler}
+                onConfirmationHandler={onConfirmationHandler}
+                triggerPopup={triggerPopup} />}
 
 
         </div>
