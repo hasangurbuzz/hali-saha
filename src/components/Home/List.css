@@ -25,7 +25,7 @@ ul {
 }
 
 li {
-    column-count: 3;
+    column-count: auto;
     float: left;
     padding: 2px 5px;
 }
