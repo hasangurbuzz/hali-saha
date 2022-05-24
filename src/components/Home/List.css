@@ -3,7 +3,7 @@
     width: 100%;
 }
 
-.list-ul {
+/* .list-ul {
     padding: 0;
     list-style-type: none;
     width: 70%;
@@ -11,6 +11,21 @@
 }
 
 .list-li {
+    column-count: auto;
+    float: left;
+    padding: 2px 5px;
+} */
+
+
+ul {
+    padding: 0;
+    list-style-type: none;
+    width: 70%;
+    margin: auto;
+}
+
+li {
+    column-count: 3;
     float: left;
     padding: 2px 5px;
 }
@@ -19,6 +34,4 @@
     margin: 10px;
 }
 
-.list-not-found {
-
-}
+.list-not-found {}
