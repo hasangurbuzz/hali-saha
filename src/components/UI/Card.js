@@ -1,12 +1,14 @@
 import React from 'react';
 import './Card.css'
 
-const Card = ({image, description}) => {
+const Card = ({ image, description }) => {
+
     return (
         <div className={'card-container'}>
             <div className={'card-image'} style={{
-                backgroundImage: `url(/images/${image})`
-            }}/>
+                backgroundImage: `url(${image})`
+            }} />
+
             <p className={'card-info'}>{description}</p>
 
         </div>

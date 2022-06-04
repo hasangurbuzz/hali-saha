@@ -85,8 +85,9 @@
     margin: 0;
     font: inherit;
     color: currentColor;
-    width: 1.95em;
-    height: 1.95em;
+    width: 1.15em;
+    height: 1.15em;
+    padding: 1px;
     border: solid black 11px;
     border-radius: 1.15em;
     transform: translateY(0.175em);
@@ -102,7 +103,7 @@
     height: 0.75em;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em white;
+    box-shadow: inset 1em 1em rgb(255, 255, 255);
     clip-path: ellipse(45% 21% at 50% 50%);
 }
 

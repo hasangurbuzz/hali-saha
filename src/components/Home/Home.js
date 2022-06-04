@@ -1,21 +1,22 @@
-import React, {useState} from 'react';
-import List from "./List";
-import Panel from "./Panel";
+import React, { useState } from 'react';
+import List from "../UI/List";
+import Detail from "./Detail"
 import "./Home.css"
+import SearchBar from '../UI/SearchBar';
 
 
 const Home = (props) => {
-    const {user, listOfHaliSaha, onAddReservationHandler, triggerPopup} = props
+    const { user, listOfHaliSaha, onAddReservationHandler, triggerPopup } = props
 
 
     const [inputText, setInputText] = useState('')
-    const [panelStatus, setPanelStatus] = useState(false)
+    const [detailPanelStatus, setDetailPanelStatus] = useState(false)
     const [chosenElement, setChosenElement] = useState({})
 
 
-    const inputHandler = (e) => {
-        let lowerCase = e.target.value.toLowerCase();
-        setInputText(lowerCase);
+    const inputHandler = (input) => {
+        setInputText(input);
+
     };
 
     const onConfirmationHandler = () => {
@@ -23,40 +24,53 @@ const Home = (props) => {
     }
 
 
-    const panelStatusHandler = () => {
-        setPanelStatus(!panelStatus)
+    const detailPanelToggler = () => {
+        setDetailPanelStatus(!detailPanelStatus)
     }
 
     const chosenElementHandler = (element) => {
         setChosenElement(element)
+        detailPanelToggler()
     }
 
+    const clearSearchHandler = () => {
+        setInputText('')
+    }
 
     return (
         <div className={'home-container'}>
-            {panelStatus &&
-                <Panel user={user} panelStatusHandler={panelStatusHandler} chosenElement={chosenElement}
-                       onConfirmationHandler={onConfirmationHandler} triggerPopup={triggerPopup}
+            {detailPanelStatus &&
+                <Detail
+                    user={user}
+                    detailPanelToggler={detailPanelToggler}
+                    chosenElement={chosenElement}
+                    onConfirmationHandler={onConfirmationHandler}
+                    triggerPopup={triggerPopup}
                 />}
 
 
-            {!panelStatus &&
+            {!detailPanelStatus &&
                 <>
-                    <div className={'search-bar-wrapper'}>
-                        <input className={'search-bar'} value={inputText ?? ""} type={'text'}
-                               placeholder={'Ara'}
-                               onChange={inputHandler}/>
-                        <button className={'search-bar-clear-btn'} onClick={() => setInputText('')}>&times;</button>
-                    </div>
 
-                    <List listData={listOfHaliSaha} searchInput={inputText}
-                          chosenElementHandler={chosenElementHandler}
-                          panelStatusHandler={panelStatusHandler}/>
+                    <SearchBar
+                        inputHandler={inputHandler}
+                        inputText={inputText}
+                        clearSearchHandler={clearSearchHandler} />
+
+
+                    <List
+                        listData={listOfHaliSaha}
+                        searchInput={inputText}
+                        chosenElementHandler={chosenElementHandler}
+                        detailPanelToggler={detailPanelToggler} />
 
                 </>
             }
 
-            <div className={'rolling-ball'}/>
+
+
+            <div className={'rolling-ball'} />
+
         </div>
     );
 };

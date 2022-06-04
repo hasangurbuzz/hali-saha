@@ -41,14 +41,6 @@ const Confirmation = ({ confPanelHandler, user, chosenDates, onConfirmationHandl
 
     }
 
-    // //set time state
-    // const hourHandler = (e) => {
-    //     const checkbox = e.target
-    //     setInputCheckbox(new Map(inputCheckbox.set(checkbox.name, checkbox.checked)))
-    //
-    //
-    // }
-
 
     const submitValues = () => {
         if (!inputCheckbox.size < 1) {

@@ -1,8 +1,8 @@
-import React from 'react';
-import './Popup.css'
-const Popup = (props) => {
+import React from 'react'
 
-    const { popupStateHandler, info, show } = props
+function AcceptPopup(props) {
+    const { popupStateHandler, info, show,
+        confirmHandler, cancelHandler } = props
 
 
 
@@ -16,10 +16,15 @@ const Popup = (props) => {
                 <p className={'popup-info'}>{info}</p>
                 <button className={'popup-close-btn'} onClick={popupStateHandler}>&times;</button>
 
+                <button className={'button-confirm'} onClick={confirmHandler}>Onayla</button>
+
+
+                <button className={'button-cancel'} onClick={cancelHandler}>İptal</button>
+
             </div>
 
         </div>
     );
-};
+}
 
-export default Popup;
+export default AcceptPopup
