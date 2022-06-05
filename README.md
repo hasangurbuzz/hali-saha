@@ -36,3 +36,20 @@ Install dependencies
 App will be running on [localhost:3000](https://localhost:3000)
 
 #### Demo link is [here](https://hali-saha.vercel.app/)
+
+
+- Hardcoded users for demo
+
+| Username    | Password    |
+| ----------- | ----------- |
+| admin       | 1234        |
+| user        | 1234        |
+
+
+- Hardcoded admins for demo
+
+| AdminUsername | Password    |
+| -----------   | ----------- |
+| admin         | admin       |
+| admin2        | admin2      |
+
