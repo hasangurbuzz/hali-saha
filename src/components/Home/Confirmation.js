@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Confirmation.css'
 
-const Confirmation = ({ confPanelHandler, user, chosenDates, onConfirmationHandler }) => {
+const Confirmation = ({ confPanelHandler, user, chosenDates, onConfirmationHandler,triggerPopup}) => {
 
     const hours = Array.from(Array(24).keys())
     const formatDate = (date) => {
@@ -57,8 +57,8 @@ const Confirmation = ({ confPanelHandler, user, chosenDates, onConfirmationHandl
             setReserved(chosenDates)
             onConfirmationHandler(reserved)
             confPanelHandler()
-            alert(`${element.date} tarihli ${element.time}:00 saatine alındı`)
-        } else alert('En az 1 seçim yapmanız gerek')
+            triggerPopup(`${element.date} tarihli ${chosenHours}:00 saatine alındı`)
+        } else triggerPopup('En az 1 seçim yapmanız gerek')
 
     }
 
