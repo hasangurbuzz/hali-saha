@@ -51,12 +51,10 @@ const Home = (props) => {
 
             {!detailPanelStatus &&
                 <>
-
                     <SearchBar
                         inputHandler={inputHandler}
                         inputText={inputText}
                         clearSearchHandler={clearSearchHandler} />
-
 
                     <List
                         listData={listOfHaliSaha}

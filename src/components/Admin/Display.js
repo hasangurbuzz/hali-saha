@@ -15,8 +15,9 @@ function Display(props) {
         setInputText('')
     }
     return (
-        <div>
+        <>
             <h1>Eklenen Halı Sahalar</h1>
+
 
             <SearchBar
                 inputHandler={inputHandler}
@@ -29,7 +30,7 @@ function Display(props) {
                 searchInput={inputText}
                 chosenElementHandler={props.chosenElementHandler}
             />
-        </div>
+        </>
     )
 }
 
