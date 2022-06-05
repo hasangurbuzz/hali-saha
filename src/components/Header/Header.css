@@ -30,13 +30,16 @@
     font-weight: 600;
     cursor: pointer;
     font-size: 18px;
+    border: solid 2px transparent;
+    border-radius: 5px;
+
 
 
 }
 
 .form-button:hover {
     border: solid 2px white;
-    border-radius: 5px;
+    
 }
 
 .form-button:active {
