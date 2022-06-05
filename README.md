@@ -43,7 +43,7 @@ App will be running on [localhost:3000](https://localhost:3000)
 | Username    | Password    |
 | ----------- | ----------- |
 | admin       | 1234        |
-| user        | 1234        |
+| user        | 12345      |
 
 
 - Hardcoded admins for demo
