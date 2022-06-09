@@ -62,25 +62,27 @@ function Editor(props) {
 
     return (
         <div className='container'>
-            <label >Halı Saha Adı</label>
-            <input onChange={haliSahaNameHandler} value={haliSahaName} type={"text"} />
+            <form className='form-wrapper' onSubmit={updateHaliSahaHandler}>
+                <label >Halı Saha Adı</label>
+                <input className='form-input' onChange={haliSahaNameHandler} value={haliSahaName} type={"text"} required />
 
-            <label>Adresi</label>
-            <input onChange={addressHandler} value={address} type={"text"} />
+                <label>Adresi</label>
+                <input className='form-input' onChange={addressHandler} value={address} type={"text"} required />
 
-            <label>İletişim Numarası</label>
-            <input onChange={contactNumberHandler} value={contactNumber} type={"number"} />
+                <label>İletişim Numarası</label>
+                <input className='form-input' onChange={contactNumberHandler} value={contactNumber} type={"number"} required />
 
-            <label>Resim</label>
-            <input type={"file"} onChange={imageHandler} accept="image/*" />
-            <div className='image-thumb-wrapper'>
-                <img className='image-thumb' src={imageUrls[0]} alt="" />
-            </div>
+                <label>Resim</label>
+                <input className='form-input' type={"file"} onChange={imageHandler} accept="image/*" required />
+                <div className='image-thumb-wrapper'>
+                    <img className='image-thumb' src={imageUrls[0]} alt="" />
+                </div>
 
-            <div className='editor-button-wrapper'>
-                <button className='button-confirm' onClick={updateHaliSahaHandler}>Kaydet</button>
-                <button className='button-cancel' onClick={displayModeToggler}>İptal</button>
-            </div>
+                <div className='editor-button-wrapper'>
+                    <input type={'submit'} className='button-confirm' onClick={updateHaliSahaHandler} />
+                    <button className='button-cancel' onClick={displayModeToggler}>İptal</button>
+                </div>
+            </form>
 
 
         </div>

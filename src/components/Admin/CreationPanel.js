@@ -63,23 +63,26 @@ function CreationPanel(props) {
 
     return (
         <div className='container'>
-            <label >Halı Saha Adı</label>
-            <input onChange={haliSahaNameHandler} type={"text"} />
+            <form onSubmit={createHaliSahaHandler} className="form-wrapper" >
+                <label >Halı Saha Adı</label>
+                <input className='form-input' onChange={haliSahaNameHandler} type={"text"} required  />
 
-            <label>Adresi</label>
-            <input onChange={addressHandler} type={"text"} />
+                <label>Adresi</label>
+                <input className='form-input'  onChange={addressHandler} type={"text"}  required/>
 
-            <label>İletişim Numarası</label>
-            <input onChange={contactNumberHandler} type={"number"} />
+                <label>İletişim Numarası</label>
+                <input className='form-input' onChange={contactNumberHandler} type={"number"} required />
 
-            <label>Resim</label>
-            <input type={"file"} onChange={imageHandler} accept="image/*" />
-            <div className='image-thumb-wrapper'>
-                <img className='image-thumb' src={imageUrls[0]} alt=""/>
-            </div>
+                <label>Resim</label>
+                <input className='form-input' type={"file"} onChange={imageHandler} accept="image/*" required/>
+                <div className='image-thumb-wrapper'>
+                    <img className='image-thumb' src={imageUrls[0]} alt="" />
+                </div>
+                <input type={'submit'} className='button-confirm' value={"Kaydet"}/>
+                <button className='button-cancel' onClick={displayModeToggler}>İptal</button>
+            </form>
 
-            <button onClick={createHaliSahaHandler}>Kaydet</button>
-            <button onClick={displayModeToggler}>İptal</button>
+
         </div>
     )
 }

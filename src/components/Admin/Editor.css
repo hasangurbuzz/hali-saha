@@ -11,7 +11,7 @@ label {
     font-size: 16px;
 }
 
-input {
+.form-input {
     font-size: 16px;
     border-radius: 2px;
     border: solid green;
@@ -33,4 +33,9 @@ input {
 
 .editor-button-wrapper {
     margin: 10px;
+}
+
+.form-wrapper{
+    display: flex;
+    flex-direction: column;
 }

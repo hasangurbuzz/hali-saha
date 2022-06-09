@@ -20,7 +20,14 @@ button:active{
     padding: 10px;
     cursor: pointer;
     
+    
 }
+.button-confirm:active{
+    transform: scale(0.9);
+    
+    
+}
+
 
 
 
