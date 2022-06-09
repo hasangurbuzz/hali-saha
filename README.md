@@ -54,4 +54,4 @@ App will be running on [localhost:3000](https://localhost:3000)
 | admin2        | admin2      |
 
 
-#### [Presentation link](https://docs.google.com/presentation/d/1hzsqK6TB5UMvoXrosSvPSmPtkT275QLJ/edit?usp=sharing&ouid=107557787690813553597&rtpof=true&sd=true)
+#### [Presentation link](https://docs.google.com/presentation/d/1t8Y5F_83X0hUGNQ-HgwMJyU3_V3mpnj_/edit?usp=sharing&ouid=107557787690813553597&rtpof=true&sd=true)
